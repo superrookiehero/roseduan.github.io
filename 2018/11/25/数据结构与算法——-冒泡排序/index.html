@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="roseduan的个人博客">
 <meta property="og:description" content="1.导言因为这是排序算法系列的第一篇文章，所以多啰嗦几句。 排序是很常见的算法之一，现在很多编程语言都集成了一些排序算法，比如Java 的Arrays.sort()方法，这种方式让我们可以不在乎内部实现细节而直接调用，在实际的软件开发当中也会经常使用到。但是站在开发者的角度而言，知其然必须知其所以然。多练练排序算法，不仅能够让我们知道一些排序方法的底层实现细节，更能够锻炼我们的思维，提升编程能力。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="d:/Blog/source/images/冒泡.png">
-<meta property="og:updated_time" content="2018-11-26T11:14:15.668Z">
+<meta property="og:image" content="https://roseduan.github.io/images/%E5%86%92%E6%B3%A1.png">
+<meta property="og:updated_time" content="2018-11-27T09:38:25.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法——-排序（一）">
 <meta name="twitter:description" content="1.导言因为这是排序算法系列的第一篇文章，所以多啰嗦几句。 排序是很常见的算法之一，现在很多编程语言都集成了一些排序算法，比如Java 的Arrays.sort()方法，这种方式让我们可以不在乎内部实现细节而直接调用，在实际的软件开发当中也会经常使用到。但是站在开发者的角度而言，知其然必须知其所以然。多练练排序算法，不仅能够让我们知道一些排序方法的底层实现细节，更能够锻炼我们的思维，提升编程能力。">
-<meta name="twitter:image" content="d:/Blog/source/images/冒泡.png">
+<meta name="twitter:image" content="https://roseduan.github.io/images/%E5%86%92%E6%B3%A1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -164,7 +164,7 @@
 </ol>
 <h4 id="2-言归正传"><a href="#2-言归正传" class="headerlink" title="2.言归正传"></a>2.言归正传</h4><p>冒泡排序的思路其实很简单，一个数据跟它相邻的数据进行大小的比较，如果满足大小关系，就将这两个数据交换位置。一直重复这个操作，就能将数据排序。 </p>
 <p>举个例子，假如有数组a[3,5,1,4,9,6]，第一次冒泡的操作如下图所示：</p>
-<p><img src="D:\Blog\source\images\冒泡.png" alt=""></p>
+<p><img src="https://roseduan.github.io/images/%E5%86%92%E6%B3%A1.png" alt=""></p>
 <p>重复进行这个操作，6次冒泡之后，数据排序完成。</p>
 <p>根据这个思路，你很容易能够写出下面的代码实现冒泡排序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//data表示整型数组，n表示数组大小</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="comment">//数组大小小于等于1，无须排序，返回空</span></span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="comment">//如果data[j] &gt; data[j + 1]，交换两个数据的位置</span></span><br><span class="line">                <span class="keyword">if</span> (data[j] &gt; data[j + <span class="number">1</span>])&#123;</span><br><span class="line">                    <span class="keyword">int</span> temp = data[j];</span><br><span class="line">                    data[j] = data[j + <span class="number">1</span>];</span><br><span class="line">                    data[j + <span class="number">1</span>] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -180,7 +180,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年11月26日 19:14</p>
+        <p>最后更新： 2018年11月27日 17:38</p>
         <p>原始链接： <a class="post-url" href="/2018/11/25/数据结构与算法——-冒泡排序/" title="数据结构与算法——-排序（一）">http://roseduan.github.io/2018/11/25/数据结构与算法——-冒泡排序/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
@@ -304,6 +304,16 @@
     
 
 <nav id="article-nav">
+  
+    <a href="/2018/11/27/为什么我说看文档是最快捷有效的学习方式/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          为什么我说看文档是最快捷有效的学习方式？
+        
+      </span>
+    </a>
   
   
     <a href="/2018/11/21/培训机构的小姐姐是如何说服你的/" id="article-nav-older" class="article-nav-link-wrap">
