@@ -8,14 +8,20 @@
   
     <meta name="keywords" content="roseduan,roseduan's blog">
   
-  <meta property="og:type" content="article">
+  <meta name="description" content="1.回顾前面说到了三种最基本的排序算法，分别是冒泡排序、选择排序、插入排序，他们的平均时间复杂度都是O(n2)，适用于小规模数据的排序，其中插入排序的效率稍高，工作中使用得更多，我也推荐使用插入排序。今天讲到的三种排序算法的时间复杂度都是O(nlogn)，分别是希尔排序、归并排序、快速排序，其中后两者的使用非常的普遍。 2.希尔排序首先来看看希尔排序，希尔排序其实本质上也是一种插入排序，只是做了一">
+<meta name="keywords" content="排序算法">
+<meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法——排序（三）">
 <meta property="og:url" content="http://roseduan.github.io/2018/11/30/数据结构与算法——排序（三）/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
+<meta property="og:description" content="1.回顾前面说到了三种最基本的排序算法，分别是冒泡排序、选择排序、插入排序，他们的平均时间复杂度都是O(n2)，适用于小规模数据的排序，其中插入排序的效率稍高，工作中使用得更多，我也推荐使用插入排序。今天讲到的三种排序算法的时间复杂度都是O(nlogn)，分别是希尔排序、归并排序、快速排序，其中后两者的使用非常的普遍。 2.希尔排序首先来看看希尔排序，希尔排序其实本质上也是一种插入排序，只是做了一">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-30T07:06:54.923Z">
+<meta property="og:image" content="https://roseduan.github.io/images/%E5%B8%8C%E5%B0%94.png">
+<meta property="og:updated_time" content="2018-11-30T08:22:41.310Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法——排序（三）">
+<meta name="twitter:description" content="1.回顾前面说到了三种最基本的排序算法，分别是冒泡排序、选择排序、插入排序，他们的平均时间复杂度都是O(n2)，适用于小规模数据的排序，其中插入排序的效率稍高，工作中使用得更多，我也推荐使用插入排序。今天讲到的三种排序算法的时间复杂度都是O(nlogn)，分别是希尔排序、归并排序、快速排序，其中后两者的使用非常的普遍。 2.希尔排序首先来看看希尔排序，希尔排序其实本质上也是一种插入排序，只是做了一">
+<meta name="twitter:image" content="https://roseduan.github.io/images/%E5%B8%8C%E5%B0%94.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -118,6 +124,13 @@
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据结构与算法/">数据结构与算法</a>
+                  
+              </li>
+          
         <li>
           <i class="fa fa-calendar"></i>  2018-11-30
         </li>
@@ -135,10 +148,17 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <h4 id="1-回顾"><a href="#1-回顾" class="headerlink" title="1.回顾"></a>1.回顾</h4><p>前面说到了三种最基本的排序算法，分别是冒泡排序、选择排序、插入排序，他们的平均时间复杂度都是O(n<sup>2</sup>)，适用于小规模数据的排序，其中插入排序的效率稍高，工作中使用得更多，我也推荐使用插入排序。今天讲到的三种排序算法的时间复杂度都是O(nlogn)，分别是希尔排序、归并排序、快速排序，其中后两者的使用非常的普遍。</p>
+<h4 id="2-希尔排序"><a href="#2-希尔排序" class="headerlink" title="2.希尔排序"></a>2.希尔排序</h4><p>首先来看看希尔排序，希尔排序其实本质上也是一种插入排序，只是做了一些优化，其思路是：将排序的数组按照一定的增量将数据分组，每个分组用插入排序算法排序，然后增量逐步减小，当增量减小为1的时候，算法便终止，所以希尔排序又叫做“缩小增量排序”。</p>
+<p>我们常取的原始增量为数据的大小/2，例如数据大小为length，我们将其分为leng / 2个组，然后length = length / 2，继续分下去，直到length = 1。文字看起来比较抽象，我画了图来帮助你理解：</p>
+<p><img src="https://roseduan.github.io/images/%E5%B8%8C%E5%B0%94.png" alt=""></p>
+<p>下面是它的代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&#123;% codeblock [title] [lang:language] [url] [link text] %&#125;code snippet&#123;% endcodeblock %&#125;`</span><br></pre></td></tr></table></figure>
+<p>很遗憾，希尔排序虽然时间复杂度为O(nlogn)，但它是一种不稳定的算法，因为分组的时候可能会错开相同的元素，分组进行插入排序的时候，元素的位置交换之后，稳定性就被破坏了。比起归并排序，它是不稳定的，比起快速排序，它的执行效率稍慢，所以希尔排序并没有应用得很广泛。</p>
+<h4 id="3-归并排序"><a href="#3-归并排序" class="headerlink" title="3.归并排序"></a>3.归并排序</h4>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年11月30日 15:06</p>
+        <p>最后更新： 2018年11月30日 16:22</p>
         <p>原始链接： <a class="post-url" href="/2018/11/30/数据结构与算法——排序（三）/" title="数据结构与算法——排序（三）">http://roseduan.github.io/2018/11/30/数据结构与算法——排序（三）/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
@@ -196,7 +216,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/11/30/数据结构与算法——排序（三）/&title=《数据结构与算法——排序（三）》 — roseduan的个人博客&pic=http://roseduan.github.ioimages/头像.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/11/30/数据结构与算法——排序（三）/&title=《数据结构与算法——排序（三）》 — roseduan的个人博客&pic=/images/排序三.jpeg" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -240,6 +260,13 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/排序算法/" class="color5">排序算法</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -247,6 +274,12 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-回顾"><span class="post-toc-text">1.回顾</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-希尔排序"><span class="post-toc-text">2.希尔排序</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-归并排序"><span class="post-toc-text">3.归并排序</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
   
