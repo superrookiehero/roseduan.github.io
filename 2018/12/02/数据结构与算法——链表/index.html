@@ -16,12 +16,15 @@
 <meta property="og:site_name" content="roseduan的个人博客">
 <meta property="og:description" content="1.概述链表可以说是最基础的数据结构之一了，使用也十分的广泛，今天就来说说链表这个数据结构。链表通常分为单链表、双向链表、循环链表，其中双链表是最常用的。 2.单链表首先来看看单链表，与数组相比，链表不需要连续的内存空间，它使用指针将不连续的内存块连接起来。其中的内存块我们称为链表的结点，为了将结点串联起来，每个结点还需要一个next指针，指向下一个结点的地址。下面是单链表的示意图：  可以从图中">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/单链表">
-<meta property="og:updated_time" content="2018-12-02T07:47:52.943Z">
+<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/单链表.png">
+<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/链表删除.png">
+<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/循环链表.png">
+<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/双向链表.png">
+<meta property="og:updated_time" content="2018-12-02T11:47:42.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法——链表">
 <meta name="twitter:description" content="1.概述链表可以说是最基础的数据结构之一了，使用也十分的广泛，今天就来说说链表这个数据结构。链表通常分为单链表、双向链表、循环链表，其中双链表是最常用的。 2.单链表首先来看看单链表，与数组相比，链表不需要连续的内存空间，它使用指针将不连续的内存块连接起来。其中的内存块我们称为链表的结点，为了将结点串联起来，每个结点还需要一个next指针，指向下一个结点的地址。下面是单链表的示意图：  可以从图中">
-<meta name="twitter:image" content="http://roseduan.github.io/2018/12/02/images/单链表">
+<meta name="twitter:image" content="http://roseduan.github.io/2018/12/02/images/单链表.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -150,12 +153,23 @@
             
             <h4 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h4><p>链表可以说是最基础的数据结构之一了，使用也十分的广泛，今天就来说说链表这个数据结构。链表通常分为单链表、双向链表、循环链表，其中双链表是最常用的。</p>
 <h4 id="2-单链表"><a href="#2-单链表" class="headerlink" title="2.单链表"></a>2.单链表</h4><p>首先来看看单链表，与数组相比，链表不需要连续的内存空间，它使用指针将不连续的内存块连接起来。其中的内存块我们称为链表的结点，为了将结点串联起来，每个结点还需要一个next指针，指向下一个结点的地址。下面是单链表的示意图：</p>
-<p><img src="../images/单链表" alt="1543736443225"></p>
+<p><img src="../images/单链表.png" alt="1543736443225"></p>
 <p>可以从图中看到，链表的每个结点保存了数据data和指向下一个结点的指针next，其中有两个指针比较特殊，一个是头节点（第一个结点）的指针，它指向了头结点的地址，使用它我们可以遍历整个链表；另一个是尾结点（最后一个结点）的指针，它指向null，表示链表的结束。</p>
+<p>单链表其实与我们常用的数组类似，都支持元素的插入、删除、查找，只不过单链表与数组的最大区别就是内存空间不连续，所以不用担心容量不足的问题。我们知道，数组的插入和删除操作十分的耗时，因为为了保证内存的连续性，必须进行大量的数据搬移工作。</p>
+<p>但是链表却能够很高效的插入和删除元素，只需要改变指针的指向即可。</p>
+<p><img src="../images/链表删除.png" alt="1543742058676"></p>
+<p>结合上面的图就不难理解了，单链表可以在O(1)时间复杂度内添加和删除元素，这比数组就更加有优势了。</p>
+<p>但是有一个问题，要是我们查找一个元素呢？非常不幸，只能从链表的头结点开始遍历，然后找到元素，这样时间复杂度就为O(n)了。</p>
+<p>这里我给出了单链表的查找和删除结点的代码，你可以结合代码来理解一下，然后动手写写其他的单链表操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingleLinkedList</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Node head = <span class="keyword">null</span>;<span class="comment">//定义头结点</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//1.根据值查找结点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Node <span class="title">getNodeByValue</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">		Node p = head;</span><br><span class="line">		<span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; p.getData() != value) &#123;</span><br><span class="line">			p = p.next;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//2.删除值等于给定值的结点</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteByValue</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">		</span><br><span class="line">		Node p = head;</span><br><span class="line">		Node pBefore = <span class="keyword">null</span>;<span class="comment">//用pBefore表示p前面一个结点</span></span><br><span class="line">		<span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; p.getData() != value) &#123;</span><br><span class="line">			pBefore = p;</span><br><span class="line">			p = p.next;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (p == <span class="keyword">null</span>) <span class="keyword">return</span>;<span class="comment">//说明没有找到结点</span></span><br><span class="line">		<span class="keyword">if</span>(pBefore == <span class="keyword">null</span>) head = head.next;<span class="comment">//说明删除的结点是头结点</span></span><br><span class="line">		<span class="keyword">else</span> pBefore.next = pBefore.next.next;<span class="comment">//否则将pBefore的指针指向p的后一个结点，即删除p</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//定义链表结点</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> data;</span><br><span class="line">		<span class="keyword">private</span> Node next;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data, Node next)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">			<span class="keyword">this</span>.next = next;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> data;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-循环链表"><a href="#3-循环链表" class="headerlink" title="3.循环链表"></a>3.循环链表</h4><p>循环链表其实与单链表的唯一区别就是，循环链表的尾结点指针指向了头结点，这样就形成了一个循环的结构，用来解决某些具有环形特点的问题。<img src="../images/循环链表.png" alt="1543744433949"></p>
+<h4 id="4-双向链表"><a href="#4-双向链表" class="headerlink" title="4.双向链表"></a>4.双向链表</h4><p>我们重点来看一下双向链表，其实根据名字就能够猜个大概了，双向链表和单链表的区别就是：一个结点有两个指针，一个指针指向前面的结点，一个指针指向后面的结点。</p>
+<p><img src="../images/双向链表.png" alt="1543751236358"></p>
+<p>大王</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月02日 15:47</p>
+        <p>最后更新： 2018年12月02日 19:47</p>
         <p>原始链接： <a class="post-url" href="/2018/12/02/数据结构与算法——链表/" title="数据结构与算法——链表">http://roseduan.github.io/2018/12/02/数据结构与算法——链表/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
@@ -273,7 +287,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-概述"><span class="post-toc-text">1.概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-单链表"><span class="post-toc-text">2.单链表</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-概述"><span class="post-toc-text">1.概述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-单链表"><span class="post-toc-text">2.单链表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-循环链表"><span class="post-toc-text">3.循环链表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-双向链表"><span class="post-toc-text">4.双向链表</span></a></li></ol>
         </nav>
     </aside>
     
