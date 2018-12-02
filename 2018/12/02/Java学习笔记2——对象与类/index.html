@@ -3,23 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>报到贴 | roseduan的个人博客</title>
+  <title>Java学习笔记2——对象与类 | roseduan的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="roseduan,roseduan's blog">
   
-  <meta name="description" content="1.说来惭愧，在去年的这个时候，我就已经想要搭建自己的博客了，并且折腾了一天，基本上完成了初步的搭建。但是我并没有使用起来，这个博客也就荒废在这里了。大概一年之后，可能是外部因素的刺激，也可能是自身的觉悟使然，让我又重新搭建起自己的博客。浪费了一年时间之后，有一种悔不当初的复杂心情，也有重新来过的轻快愉悦，在这里，我写下roseduan的个人博客的第一篇文章。 2.前段时间，我看到了公众号【码农翻">
-<meta name="keywords" content="无事杂谈">
+  <meta name="description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。">
+<meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="报到贴">
-<meta property="og:url" content="http://roseduan.github.io/2018/11/19/报到贴/index.html">
+<meta property="og:title" content="Java学习笔记2——对象与类">
+<meta property="og:url" content="http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
-<meta property="og:description" content="1.说来惭愧，在去年的这个时候，我就已经想要搭建自己的博客了，并且折腾了一天，基本上完成了初步的搭建。但是我并没有使用起来，这个博客也就荒废在这里了。大概一年之后，可能是外部因素的刺激，也可能是自身的觉悟使然，让我又重新搭建起自己的博客。浪费了一年时间之后，有一种悔不当初的复杂心情，也有重新来过的轻快愉悦，在这里，我写下roseduan的个人博客的第一篇文章。 2.前段时间，我看到了公众号【码农翻">
+<meta property="og:description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-22T15:04:24.393Z">
+<meta property="og:updated_time" content="2018-12-02T13:06:50.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="报到贴">
-<meta name="twitter:description" content="1.说来惭愧，在去年的这个时候，我就已经想要搭建自己的博客了，并且折腾了一天，基本上完成了初步的搭建。但是我并没有使用起来，这个博客也就荒废在这里了。大概一年之后，可能是外部因素的刺激，也可能是自身的觉悟使然，让我又重新搭建起自己的博客。浪费了一年时间之后，有一种悔不当初的复杂心情，也有重新来过的轻快愉悦，在这里，我写下roseduan的个人博客的第一篇文章。 2.前段时间，我看到了公众号【码农翻">
+<meta name="twitter:title" content="Java学习笔记2——对象与类">
+<meta name="twitter:description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -110,14 +110,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-报到贴" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-Java学习笔记2——对象与类" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      报到贴
+      Java学习笔记2——对象与类
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -125,12 +125,12 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/无事杂谈/">无事杂谈</a>
+                      <a href="/categories/Java基础知识/">Java基础知识</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2018-11-19
+          <i class="fa fa-calendar"></i>  2018-12-02
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -146,22 +146,26 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4><p>说来惭愧，在去年的这个时候，我就已经想要搭建自己的博客了，并且折腾了一天，基本上完成了初步的搭建。但是我并没有使用起来，这个博客也就荒废在这里了。大概一年之后，可能是外部因素的刺激，也可能是自身的觉悟使然，让我又重新搭建起自己的博客。浪费了一年时间之后，有一种悔不当初的复杂心情，也有重新来过的轻快愉悦，在这里，我写下roseduan的个人博客的第一篇文章。</p>
-<h4 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h4><p>前段时间，我看到了公众号【码农翻身】里面的一篇文章，里面有说到写作对于一个程序员有多么的重要。具体的内容不必赘述，只想阐述其中的一点：</p>
-<blockquote>
-<p> 一个知识点学没学透彻，一个很有效的判断的方法就是你能不能够向别人讲述清楚这个知识点。很多时候，我们在学习的时候，知识在内心有个大致的概念，感觉自己弄懂了，但是要你自己表述出来，我们常常感到很困难，这就说明我们其实并没有彻底弄懂这个知识。那该怎么办，我们总不能老是拿别人来做自己的知识练习对象，‘哎哎，我今天学了数据库，我给你讲讲吧！’，刚开始别人可能还有兴趣听一听，但是长此以往没有人受得了。</p>
-<p>所以，写作的优势就能够体现出来了。写作逼着你去思考，去总结，去想怎么把这个问题说明白。其实这就直接锻炼了我们的文字组织能力和语言表达能力。</p>
-</blockquote>
-<p>以上，是近期直接导致我想要重新开始写博客的原因，因为这个观点戳中了我内心最真实的想法。长期以来，我接触到的这方面的东西实在不少，总是建议我们应该写作，应该坚持下去。但是碍于自己的写作意识不够和不能够更好坚持下去的缘由，我迟迟未能在这一片天地开拓出自己的空间，但现在，是时候了。</p>
-<h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4><p>互联网时代的好处之一便是将一些远在天边的人和自己以某种方式相联系，让我能够从中学习到别人身上的优点，看到别人的光环，并知道别人是怎么做到这一切的。我很幸运的能够接触到一些行业内的比较厉害的人，跟我类似的也大有人在：非科班出身，自学编程，成为行业大牛，互联网大V。我从这些人身上看到了很多共同的优点，其中之一便是长期坚持写作。虽说我跟他们的差距非常的大，但这并不妨碍我在心中播下梦想的种子，因为有期待就有前进的动力。</p>
-<h4 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h4><p>我的写作经验大都是在我的公众号【roseduan】上面积累的，但是更新连续性并不是很好，经常出现较长时间的停更。而且这上面都是非技术性的文章，所以只要脑子没有打开，没有新的思考的话，就比较难长时间的更新。但是我不会放弃的，公众号与博客，将是我长期写作的地方。困难将可以预见，那就是我能不能长时间的坚持下去，还有就是初期的写作不会博得太多的关注，还有以后的时间安排问题。这些困难基本上是每个人都会遇到的，有的人中途放弃了，有的人挺下来了，这也是考验一个人最直接的方式吧。</p>
-<h4 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h4><p>我大四了，在学校已经没有课程了，仅剩的任务便是毕业论文，可以说我的大学生活基本上结束了。在不久的以后面临的便是社会的考验和职场的洗礼。对于技术人来说，初入职场需要注意些什么，需要培养哪些软技能，我已经听说了不少，无非是写作、英语、演讲、投资理财等等，却没有机会实际的感触一下。但是在大学期间从写作开始，我觉得很不错了。</p>
-<p>​    </p>
+            <p><strong>1.面向对象</strong></p>
+<p>1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。</p>
+<p>2.对象的三个特性：</p>
+<ul>
+<li>对象的行为</li>
+<li>对象的状态</li>
+<li>对象标识</li>
+</ul>
+<p>3.类之间有常见的三种关系：</p>
+<ul>
+<li>依赖（uses-a）：一个类的方法操纵另一个类的对象</li>
+<li>聚合（has-a）：一个类的对象包含另一个类的对象</li>
+<li>继承（is-a）：一个类继承另一个类</li>
+</ul>
+<p>4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年11月22日 23:04</p>
-        <p>原始链接： <a class="post-url" href="/2018/11/19/报到贴/" title="报到贴">http://roseduan.github.io/2018/11/19/报到贴/</a></p>
+        <p>最后更新： 2018年12月02日 21:06</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/02/Java学习笔记2——对象与类/" title="Java学习笔记2——对象与类">http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
                 <img src="/images/头像.png" alt="roseduan">
@@ -218,7 +222,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/11/19/报到贴/&title=《报到贴》 — roseduan的个人博客&pic=images/报到贴.jpeg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——对象与类》 — roseduan的个人博客&pic=/images/Java.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -228,22 +232,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/11/19/报到贴/&title=《报到贴》 — roseduan的个人博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——对象与类》 — roseduan的个人博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://roseduan.github.io/2018/11/19/报到贴/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《报到贴》 — roseduan的个人博客&url=http://roseduan.github.io/2018/11/19/报到贴/&via=http://roseduan.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java学习笔记2——对象与类》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&via=http://roseduan.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://roseduan.github.io/2018/11/19/报到贴/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -253,7 +257,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://roseduan.github.io/2018/11/19/报到贴/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -265,7 +269,7 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/无事杂谈/" class="color5">无事杂谈</a>
+    <a href="/tags/Java基础/" class="color2">Java基础</a>
       
   </li>
 
@@ -276,25 +280,14 @@
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1"><span class="post-toc-text">1.</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2"><span class="post-toc-text">2.</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3"><span class="post-toc-text">3.</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4"><span class="post-toc-text">4.</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5"><span class="post-toc-text">5.</span></a></li></ol>
-        </nav>
-    </aside>
-    
 
 <nav id="article-nav">
   
-    <a href="/2018/11/21/培训机构的小姐姐是如何说服你的/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          培训机构的小姐姐是如何说服你的
-        
-      </span>
-    </a>
   
+    <a href="/2018/12/02/数据结构与算法——链表/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">数据结构与算法——链表</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
   
 </nav>
 
