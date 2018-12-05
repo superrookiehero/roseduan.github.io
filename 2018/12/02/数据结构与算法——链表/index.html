@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="roseduan的个人博客">
 <meta property="og:description" content="1.概述链表可以说是最基础的数据结构之一了，使用也十分的广泛，今天就来说说链表这个数据结构。链表通常分为单链表、双向链表、循环链表，其中双链表是最常用的。 2.单链表首先来看看单链表，与数组相比，链表不需要连续的内存空间，它使用指针将不连续的内存块连接起来。其中的内存块我们称为链表的结点，为了将结点串联起来，每个结点还需要一个next指针，指向下一个结点的地址。下面是单链表的示意图：  可以从图中">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/单链表.png">
-<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/链表删除.png">
+<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/单链表-1543993464078.png">
+<meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/链表删除-1543993520521.png">
 <meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/循环链表.png">
 <meta property="og:image" content="http://roseduan.github.io/2018/12/02/images/双向链表.png">
-<meta property="og:updated_time" content="2018-12-02T11:47:42.133Z">
+<meta property="og:updated_time" content="2018-12-05T07:05:34.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法——链表">
 <meta name="twitter:description" content="1.概述链表可以说是最基础的数据结构之一了，使用也十分的广泛，今天就来说说链表这个数据结构。链表通常分为单链表、双向链表、循环链表，其中双链表是最常用的。 2.单链表首先来看看单链表，与数组相比，链表不需要连续的内存空间，它使用指针将不连续的内存块连接起来。其中的内存块我们称为链表的结点，为了将结点串联起来，每个结点还需要一个next指针，指向下一个结点的地址。下面是单链表的示意图：  可以从图中">
-<meta name="twitter:image" content="http://roseduan.github.io/2018/12/02/images/单链表.png">
+<meta name="twitter:image" content="http://roseduan.github.io/2018/12/02/images/单链表-1543993464078.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -58,7 +58,7 @@
                     
                     <a href="/archives">
                         <i class="fa fa-archive"></i>
-                        <span>分类</span>
+                        <span>归档</span>
                     </a>
                     
                     <a href="/about">
@@ -153,11 +153,11 @@
             
             <h4 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h4><p>链表可以说是最基础的数据结构之一了，使用也十分的广泛，今天就来说说链表这个数据结构。链表通常分为单链表、双向链表、循环链表，其中双链表是最常用的。</p>
 <h4 id="2-单链表"><a href="#2-单链表" class="headerlink" title="2.单链表"></a>2.单链表</h4><p>首先来看看单链表，与数组相比，链表不需要连续的内存空间，它使用指针将不连续的内存块连接起来。其中的内存块我们称为链表的结点，为了将结点串联起来，每个结点还需要一个next指针，指向下一个结点的地址。下面是单链表的示意图：</p>
-<p><img src="../images/单链表.png" alt="1543736443225"></p>
+<p><img src="../images/单链表-1543993464078.png" alt="1543736443225"></p>
 <p>可以从图中看到，链表的每个结点保存了数据data和指向下一个结点的指针next，其中有两个指针比较特殊，一个是头节点（第一个结点）的指针，它指向了头结点的地址，使用它我们可以遍历整个链表；另一个是尾结点（最后一个结点）的指针，它指向null，表示链表的结束。</p>
 <p>单链表其实与我们常用的数组类似，都支持元素的插入、删除、查找，只不过单链表与数组的最大区别就是内存空间不连续，所以不用担心容量不足的问题。我们知道，数组的插入和删除操作十分的耗时，因为为了保证内存的连续性，必须进行大量的数据搬移工作。</p>
 <p>但是链表却能够很高效的插入和删除元素，只需要改变指针的指向即可。</p>
-<p><img src="../images/链表删除.png" alt="1543742058676"></p>
+<p><img src="../images/链表删除-1543993520521.png" alt="1543742058676"></p>
 <p>结合上面的图就不难理解了，单链表可以在O(1)时间复杂度内添加和删除元素，这比数组就更加有优势了。</p>
 <p>但是有一个问题，要是我们查找一个元素呢？非常不幸，只能从链表的头结点开始遍历，然后找到元素，这样时间复杂度就为O(n)了。</p>
 <p>这里我给出了单链表的查找和删除结点的代码，你可以结合代码来理解一下，然后动手写写其他的单链表操作。</p>
@@ -169,7 +169,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月02日 19:47</p>
+        <p>最后更新： 2018年12月05日 15:05</p>
         <p>原始链接： <a class="post-url" href="/2018/12/02/数据结构与算法——链表/" title="数据结构与算法——链表">http://roseduan.github.io/2018/12/02/数据结构与算法——链表/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
@@ -389,7 +389,7 @@
             
             <li>
                 <a href="/archives">
-                    <i class="fa fa-archive"></i><span>分类</span>
+                    <i class="fa fa-archive"></i><span>归档</span>
                 </a>
             </li>
             
