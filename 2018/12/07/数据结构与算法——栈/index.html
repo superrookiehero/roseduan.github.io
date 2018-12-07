@@ -8,14 +8,21 @@
   
     <meta name="keywords" content="roseduan,roseduan's blog">
   
-  <meta property="og:type" content="article">
+  <meta name="description" content="1.栈前面说到了链表，其实常见的，简单的数据结构还有栈和队列，今天就来看看这两种数据结构。 栈其实很好理解，举个例子：办公桌上的一堆文件，后放上去的、位于最上方的，总是最先拿到的；而先放进去的，反而会被压在最后，所以总是最后才能拿到。这种满足了先进后出、后进先出的特点的数据结构，就叫做栈。  很明显，栈是一种操作受限的数据结构，插入和删除都只能在一端进行，插入操作叫做入栈，删除叫做出栈。那么怎么实">
+<meta name="keywords" content="栈与队列">
+<meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法——栈">
 <meta property="og:url" content="http://roseduan.github.io/2018/12/07/数据结构与算法——栈/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
+<meta property="og:description" content="1.栈前面说到了链表，其实常见的，简单的数据结构还有栈和队列，今天就来看看这两种数据结构。 栈其实很好理解，举个例子：办公桌上的一堆文件，后放上去的、位于最上方的，总是最先拿到的；而先放进去的，反而会被压在最后，所以总是最后才能拿到。这种满足了先进后出、后进先出的特点的数据结构，就叫做栈。  很明显，栈是一种操作受限的数据结构，插入和删除都只能在一端进行，插入操作叫做入栈，删除叫做出栈。那么怎么实">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-07T06:31:11.663Z">
+<meta property="og:image" content="https://roseduan.github.io/images/%E6%A0%88.png">
+<meta property="og:image" content="https://roseduan.github.io/images/%E9%98%9F%E5%88%97.png">
+<meta property="og:updated_time" content="2018-12-07T11:34:17.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法——栈">
+<meta name="twitter:description" content="1.栈前面说到了链表，其实常见的，简单的数据结构还有栈和队列，今天就来看看这两种数据结构。 栈其实很好理解，举个例子：办公桌上的一堆文件，后放上去的、位于最上方的，总是最先拿到的；而先放进去的，反而会被压在最后，所以总是最后才能拿到。这种满足了先进后出、后进先出的特点的数据结构，就叫做栈。  很明显，栈是一种操作受限的数据结构，插入和删除都只能在一端进行，插入操作叫做入栈，删除叫做出栈。那么怎么实">
+<meta name="twitter:image" content="https://roseduan.github.io/images/%E6%A0%88.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -118,6 +125,13 @@
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据结构与算法/">数据结构与算法</a>
+                  
+              </li>
+          
         <li>
           <i class="fa fa-calendar"></i>  2018-12-07
         </li>
@@ -135,10 +149,24 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <h4 id="1-栈"><a href="#1-栈" class="headerlink" title="1.栈"></a>1.栈</h4><p>前面说到了链表，其实常见的，简单的数据结构还有栈和队列，今天就来看看这两种数据结构。</p>
+<p>栈其实很好理解，举个例子：办公桌上的一堆文件，后放上去的、位于最上方的，总是最先拿到的；而先放进去的，反而会被压在最后，所以总是最后才能拿到。这种满足了先进后出、后进先出的特点的数据结构，就叫做栈。</p>
+<p><img src="https://roseduan.github.io/images/%E6%A0%88.png" alt=""></p>
+<p>很明显，栈是一种操作受限的数据结构，插入和删除都只能在一端进行，插入操作叫做入栈，删除叫做出栈。那么怎么实现一个栈呢？有两种方式，一是利用数组来实现，这种叫做顺序栈，二是利用链表来实现，叫做链式栈。这里来看看怎么用数组来实现一个顺序栈。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> ArrayStack</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> 用数组实现顺序栈</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Rose_Duan</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2018/11/4 16:43</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String[] items;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;<span class="comment">//栈中元素的个数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;<span class="comment">//栈容量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//不带参的构造器，默认栈容量大小是10</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(<span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayStack</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.items = <span class="keyword">new</span> String[capacity];</span><br><span class="line">        <span class="keyword">this</span>.count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.n = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//入栈操作</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">push</span><span class="params">(String item)</span></span>&#123;</span><br><span class="line">        <span class="comment">//数组容量已满，则无法插入</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.count == n) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        items[count] = item;</span><br><span class="line">        ++ <span class="keyword">this</span>.count;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//出栈操作</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//栈为空</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.count == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        String result = items[<span class="keyword">this</span>.count - <span class="number">1</span>];</span><br><span class="line">        -- count;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来看看时间复杂度：结合代码不难想到，不管是入栈还是出栈，都是在栈一端进行的惭怍，所以插入和删除的时间复杂度都是O(1)。链式栈的定义也比较的简单了，我这里给出了链式栈的简单的两个方法：入栈和出栈：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedListStack</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">	<span class="keyword">private</span> Node top;<span class="comment">//栈顶结点</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//入栈</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">		Node newNode = <span class="keyword">new</span> Node(value, <span class="keyword">this</span>.top);</span><br><span class="line">		<span class="keyword">this</span>.top = newNode;</span><br><span class="line">		++ <span class="keyword">this</span>.size;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//出栈</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">		Node popNode = <span class="keyword">this</span>.top;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (popNode == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;<span class="comment">//栈为空</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">this</span>.top = popNode.next;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.size &gt; <span class="number">0</span>) -- <span class="keyword">this</span>.size;</span><br><span class="line">		<span class="keyword">return</span> popNode.getData();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//栈中的结点定义</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> data;</span><br><span class="line">		<span class="keyword">private</span> Node next;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data, Node next)</span></span>&#123;</span><br><span class="line">			<span class="keyword">this</span>.data = data;</span><br><span class="line">			<span class="keyword">this</span>.next = next;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getData</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">this</span>.data;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-队列"><a href="#2-队列" class="headerlink" title="2.队列"></a>2.队列</h4><p>接下来再看看和栈很相似的另一种数据结构：队列。</p>
+<p>队列跟我们常说的排队很类似，比如我们在食堂排队打饭，排在前面的人先打到饭，排在后面的人后打到饭，这种具有先进先出特点的数据结构就叫做队列。跟栈类似，队列的操作也是受限的，插入元素即入队列只能在队列尾部进行，取出元素即出队列只能在队列头部进行。</p>
+<p><img src="https://roseduan.github.io/images/%E9%98%9F%E5%88%97.png" alt=""></p>
+<p>跟栈一样，队列也有两种实现方式，用数组实现的叫做顺序队列，用链表实现的叫做链式队列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String[] data;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size;<span class="comment">//队列容量</span></span><br><span class="line">	<span class="comment">//队列头尾指针</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> tail = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ArrayQueue</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.data = <span class="keyword">new</span> String[capacity];</span><br><span class="line">		<span class="keyword">this</span>.size = capacity;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//入队列</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enquque</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//尾指针和容量大小相同，说明队列尾部没有空间了</span></span><br><span class="line">		<span class="keyword">if</span> (tail == size) &#123;</span><br><span class="line">			<span class="keyword">if</span>(head == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//如果head == 0 &amp;&amp; tail == size，表示队列已满</span></span><br><span class="line">			<span class="comment">//数据搬移</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i = head; i &lt; tail; i ++) &#123;</span><br><span class="line">				data[i - head] = data[i];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//更新head和tail的值</span></span><br><span class="line">			head = <span class="number">0</span>;</span><br><span class="line">			tail = tail - head;</span><br><span class="line">		&#125;</span><br><span class="line">		data[tail] = value;</span><br><span class="line">		++ tail;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//出队列</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">dequeue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(head == tail) <span class="keyword">return</span> <span class="keyword">null</span>;<span class="comment">//如果head等于tail，表示队列为空</span></span><br><span class="line">		</span><br><span class="line">		String result = data[head];</span><br><span class="line">		++ head;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面是顺序队列的数组实现，可以看到，出队列的时间复杂度一直为O(1)。但是入队列的情况就有点不一样了，当队尾还有空间的时候，可直接入队列，时间复杂度还是O(1)，当队尾没有空间并且队头还有空间的时候，需要将数据搬移至队头，这时候的时间复杂度就为O(n)了。</p>
+<h4 id="3-循环队列"><a href="#3-循环队列" class="headerlink" title="3.循环队列"></a>3.循环队列</h4><p>普通的队列比较的简单，现在来看看队列的另一种形式：循环队列。</p>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月07日 14:31</p>
+        <p>最后更新： 2018年12月07日 19:34</p>
         <p>原始链接： <a class="post-url" href="/2018/12/07/数据结构与算法——栈/" title="数据结构与算法——栈">http://roseduan.github.io/2018/12/07/数据结构与算法——栈/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
@@ -196,7 +224,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/07/数据结构与算法——栈/&title=《数据结构与算法——栈》 — roseduan的个人博客&pic=http://roseduan.github.ioimages/头像.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/07/数据结构与算法——栈/&title=《数据结构与算法——栈》 — roseduan的个人博客&pic=images/" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -240,6 +268,13 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/栈与队列/" class="color5">栈与队列</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -247,8 +282,24 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-栈"><span class="post-toc-text">1.栈</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-队列"><span class="post-toc-text">2.队列</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-循环队列"><span class="post-toc-text">3.循环队列</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
+  
+    <a href="/2018/12/07/秋招以4个offer结束/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          秋招以4个offer结束
+        
+      </span>
+    </a>
   
   
     <a href="/2018/12/02/Java学习笔记2——对象与类/" id="article-nav-older" class="article-nav-link-wrap">
@@ -317,7 +368,7 @@
             <a class="category-link" href="/categories/Java基础知识/">Java基础知识</a><a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a><a class="category-link" href="/categories/无事杂谈/">无事杂谈</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -350,7 +401,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
         </div>
     </div>
 </div>
