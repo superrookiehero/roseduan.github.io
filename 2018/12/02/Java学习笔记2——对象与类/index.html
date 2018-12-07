@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Java学习笔记2——对象与类 | roseduan的个人博客</title>
+  <title>Java学习笔记2——类与继承 | roseduan的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="roseduan,roseduan's blog">
@@ -11,14 +11,14 @@
   <meta name="description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。 2.自定义类">
 <meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记2——对象与类">
+<meta property="og:title" content="Java学习笔记2——类与继承">
 <meta property="og:url" content="http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
 <meta property="og:description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。 2.自定义类">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-02T14:00:39.686Z">
+<meta property="og:updated_time" content="2018-12-06T13:49:56.137Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记2——对象与类">
+<meta name="twitter:title" content="Java学习笔记2——类与继承">
 <meta name="twitter:description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。 2.自定义类">
   
   
@@ -117,7 +117,7 @@
         
   
     <h1 class="post-title" itemprop="name">
-      Java学习笔记2——对象与类
+      Java学习笔记2——类与继承
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -177,11 +177,39 @@
 <p>3.一个方法不能修改一个基本数据类型的参数；一个方法可以改变一个对象参数的状态；一个方法不能让对象参数引用新的对象。</p>
 <p><strong>4.对象构造</strong></p>
 <p>1.如果多个方法有相同的名称、返回值类型，不同的参数，便产生了重载。</p>
+<p>2.执行顺序：静态初始化块 &gt; 初始化块 &gt; 构造器</p>
+<p>3.访问修饰符：</p>
+<ul>
+<li>public：可以被任意的类使用</li>
+<li>private：只能被定义他们的类使用</li>
+<li>default：同一个包中任意类可访问</li>
+<li>protected：同一个包中和所属子类可访问</li>
+</ul>
+<p>4.关键字this有两个用途：一是引用隐式参数，二是调用该类的其他构造器。</p>
+<p>5.在Java中，只有基本类型不是对象。其余的类型，包括数组，无论是对象数组还是基本类型数组，都扩展于Object类。</p>
+<p><strong>5.类设计技巧</strong></p>
+<p>1.一定要保证数据私有性</p>
+<p>2.一定要对数据初始化</p>
+<p>3.不要在类中使用过多的基本类型，也就是说，可以用其他的类代替多个相关的基本类型的使用。</p>
+<p>4.不是所有的实例域都需要setter和getter方法，视情况而定。</p>
+<p>5.将职责过多的类进行分解。</p>
+<p>6.类名和方法名要体现它们的意义和职责。</p>
+<p><strong>6.继承</strong></p>
+<p>1.使用super调用构造器的语句必须是子类构造器的第一条语句。</p>
+<p>2.super关键字有两个用途：一是调用父类的方法，二是调用父类的构造器。</p>
+<p>3.一个对象变量能够指示多种实际类型的现象称为多态，在运行期间能够自动地选择调用哪个方法的现象称为动态绑定。</p>
+<p>4.在覆盖一个方法的时候，子类方法不能低于父类方法的可见性。</p>
+<p>5.阻止继承：使用final修饰符。如果将一个类声明为final，只有其中的方法自动的成为final，而不包括实例域。</p>
+<p><strong>7.抽象类</strong></p>
+<p>1.为了程序的清晰性，包含一个或多个抽象方法的类本身必须被声明为抽象的。</p>
+<p>2.除了抽象方法外，抽象类还可以包括具体数据和具体方法。</p>
+<p>3.如果将一个类声明为抽象的，就不能创建这个类的对象。但是可以定义一个抽象类的对象变量，引用一个不是抽象的子类的对象。</p>
+<p>4.equals方法：用于检测一个对象是否等于另外一个对象，即判断两个对象是否具有相同的引用。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月02日 22:00</p>
-        <p>原始链接： <a class="post-url" href="/2018/12/02/Java学习笔记2——对象与类/" title="Java学习笔记2——对象与类">http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/</a></p>
+        <p>最后更新： 2018年12月06日 21:49</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/02/Java学习笔记2——对象与类/" title="Java学习笔记2——类与继承">http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
                 <img src="/images/头像.png" alt="roseduan">
@@ -238,7 +266,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——对象与类》 — roseduan的个人博客&pic=/images/Java.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——类与继承》 — roseduan的个人博客&pic=/images/Java.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -248,7 +276,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——对象与类》 — roseduan的个人博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——类与继承》 — roseduan的个人博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -258,7 +286,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java学习笔记2——对象与类》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&via=http://roseduan.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java学习笔记2——类与继承》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&via=http://roseduan.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
