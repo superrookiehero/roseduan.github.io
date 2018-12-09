@@ -3,20 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>数据结构与算法——排序（三） | roseduan的个人博客</title>
+  <title>数据结构与算法——排序（四） | roseduan的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="roseduan,roseduan's blog">
   
-  <meta name="keywords" content="排序">
+  <meta name="description" content="1.回顾前面已经说了几种基于元素比较的排序，其中归并和快速排序的应用稍多，今天就来讨论几种线性排序，这几种排序对数据的要求比较的高，但是如果能够应用起来的话，将会非常的高效，时间复杂度都能达到O(n)的程度。 2.桶排序桶排序的思路很简单，将一定范围的数据按照其大小，分别放在有序的桶内，然后桶内分别排序，然后再取出来，数据就全部有序了。例如我们要排序一组大小在1-50的订单金额。 桶排序的时间复杂">
+<meta name="keywords" content="排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法——排序（三）">
+<meta property="og:title" content="数据结构与算法——排序（四）">
 <meta property="og:url" content="http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
+<meta property="og:description" content="1.回顾前面已经说了几种基于元素比较的排序，其中归并和快速排序的应用稍多，今天就来讨论几种线性排序，这几种排序对数据的要求比较的高，但是如果能够应用起来的话，将会非常的高效，时间复杂度都能达到O(n)的程度。 2.桶排序桶排序的思路很简单，将一定范围的数据按照其大小，分别放在有序的桶内，然后桶内分别排序，然后再取出来，数据就全部有序了。例如我们要排序一组大小在1-50的订单金额。 桶排序的时间复杂">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-09T06:40:36.553Z">
+<meta property="og:updated_time" content="2018-12-09T07:48:06.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构与算法——排序（三）">
+<meta name="twitter:title" content="数据结构与算法——排序（四）">
+<meta name="twitter:description" content="1.回顾前面已经说了几种基于元素比较的排序，其中归并和快速排序的应用稍多，今天就来讨论几种线性排序，这几种排序对数据的要求比较的高，但是如果能够应用起来的话，将会非常的高效，时间复杂度都能达到O(n)的程度。 2.桶排序桶排序的思路很简单，将一定范围的数据按照其大小，分别放在有序的桶内，然后桶内分别排序，然后再取出来，数据就全部有序了。例如我们要排序一组大小在1-50的订单金额。 桶排序的时间复杂">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -114,7 +117,7 @@
         
   
     <h1 class="post-title" itemprop="name">
-      数据结构与算法——排序（三）
+      数据结构与算法——排序（四）
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -143,11 +146,22 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <h4 id="1-回顾"><a href="#1-回顾" class="headerlink" title="1.回顾"></a>1.回顾</h4><p>前面已经说了几种基于元素比较的排序，其中归并和快速排序的应用稍多，今天就来讨论几种线性排序，这几种排序对数据的要求比较的高，但是如果能够应用起来的话，将会非常的高效，时间复杂度都能达到O(n)的程度。</p>
+<h4 id="2-桶排序"><a href="#2-桶排序" class="headerlink" title="2.桶排序"></a>2.桶排序</h4><p>桶排序的思路很简单，将一定范围的数据按照其大小，分别放在有序的桶内，然后桶内分别排序，然后再取出来，数据就全部有序了。例如我们要排序一组大小在1-50的订单金额。</p>
+<p>桶排序的时间复杂度可以达到O(n)，但是它对数据的要求十分的苛刻，首先数据在每个子范围必须是差不多的，不能出现有些桶的数据非常的多，而有些桶的数据又十分的少的情况。在极端情况下，假如全部的数据都在一个桶内的话，时间复杂度会退化为O(nlogn)了。</p>
+<p>这里我模仿了一个桶排序，要排序的数据的范围在0-999之间，然后用链表初始化10个桶，每个桶存储的数据范围为：[0-99]、[100-199]、[200-299]、……、[900-999]。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BucketSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//模拟一个桶排序，data中的数据在0-1000之间</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bucketSort</span><span class="params">(<span class="keyword">int</span>[] data)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//使用链表模拟桶，新建10个桶</span></span><br><span class="line">		ArrayList&lt;LinkedList&lt;Integer&gt;&gt; buckets = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		<span class="comment">//初始化桶</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i ++) &#123;</span><br><span class="line">			buckets.add(<span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//扫描数据，将其放入桶内</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i ++) &#123;</span><br><span class="line">			<span class="keyword">int</span> bucketNum = data[i] / <span class="number">100</span>;</span><br><span class="line">			buckets.get(bucketNum).add(data[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将桶内的数据进行排序</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i ++) &#123;</span><br><span class="line">			<span class="comment">//使用Collections.sort()方法将桶内数据排序</span></span><br><span class="line">			Collections.sort(buckets.get(i));</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//排序之后，将数据拷贝到data中</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; buckets.get(i).size(); j ++) &#123;</span><br><span class="line">				data[index ++] = buckets.get(i).get(j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		Random random = <span class="keyword">new</span> Random();</span><br><span class="line">		<span class="keyword">int</span>[] data = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1000</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i ++) &#123;</span><br><span class="line">			data[i] = random.nextInt(<span class="number">1000</span>);	</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"排序之前："</span> + Arrays.toString(data));</span><br><span class="line">		</span><br><span class="line">		BucketSort.bucketSort(data);</span><br><span class="line">		System.out.println(<span class="string">"排序之后："</span> + Arrays.toString(data));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-计数排序"><a href="#3-计数排序" class="headerlink" title="3.计数排序"></a>3.计数排序</h4><p>计数排序其实是桶排序的一种特殊情况，假如要排序的数据的范围并不大，最大值是n，那么我们可以初始化n个桶，每个桶内存放数值相同的数据，这样就省去了桶内排序这一步骤。然后按照桶的大小依次取出数据，数据就是有序的了。</p>
+<p>例如，需要给10万人按照年龄排序，应该怎么做呢？使用计数排序就能够很有效的解决，我们可以假设，10万人中，年龄最小的是1，年龄最大的是120，那么我们可以初始化120个桶，将年龄相同的放如到一个桶中，这样数据整体就有序了。</p>
+<p>这里我模拟了一个计数排序：假如要给班上的100个人按照成绩进行排序，成绩最大值是10，最小值是0，那么可以用11个桶，每个桶的下标表示成绩即0-10。    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountingSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//假设有100个考生，分数在0-10之间</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">countingSort</span><span class="params">(<span class="keyword">int</span>[] data)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//新建11个桶，每个桶内保存相同的分数</span></span><br><span class="line">		<span class="comment">//使用链表模拟桶，新建11个桶</span></span><br><span class="line">		ArrayList&lt;LinkedList&lt;Integer&gt;&gt; buckets = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		<span class="comment">//初始化桶</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">11</span>; i ++) &#123;</span><br><span class="line">			buckets.add(<span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将数据放入到桶中</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i ++) &#123;</span><br><span class="line">			buckets.get(data[i]).add(data[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//将数据取出来</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">11</span>; i ++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; buckets.get(i).size(); j ++) &#123;</span><br><span class="line">				data[index ++] = buckets.get(i).get(j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">        <span class="comment">//100个考生，分数在0-10之间</span></span><br><span class="line">		<span class="keyword">int</span>[] data = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">			data[i] = (<span class="keyword">int</span>) (Math.random() * <span class="number">11</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(Arrays.toString(data));</span><br><span class="line">		</span><br><span class="line">		CountingSort.countingSort(data);</span><br><span class="line">		System.out.println(Arrays.toString(data));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实可以发现，计数排序和桶排序在代码上的区别就是：计数排序没有桶内排序这一环节。其他都是类似的。</p>
+<h4 id="4-基数排序"><a href="#4-基数排序" class="headerlink" title="4.基数排序"></a>4.基数排序</h4><p>基数排序的应用场景就更有限了，</p>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月09日 14:40</p>
-        <p>原始链接： <a class="post-url" href="/2018/12/09/数据结构与算法——排序（四）/" title="数据结构与算法——排序（三）">http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/</a></p>
+        <p>最后更新： 2018年12月09日 15:48</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/09/数据结构与算法——排序（四）/" title="数据结构与算法——排序（四）">http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
                 <img src="/images/头像.png" alt="roseduan">
@@ -204,7 +218,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/&title=《数据结构与算法——排序（三）》 — roseduan的个人博客&pic=http://roseduan.github.ioimages/头像.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/&title=《数据结构与算法——排序（四）》 — roseduan的个人博客&pic=http://roseduan.github.ioimages/头像.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -214,7 +228,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/&title=《数据结构与算法——排序（三）》 — roseduan的个人博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/&title=《数据结构与算法——排序（四）》 — roseduan的个人博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -224,7 +238,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构与算法——排序（三）》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/&via=http://roseduan.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构与算法——排序（四）》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/09/数据结构与算法——排序（四）/&via=http://roseduan.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -262,6 +276,12 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-回顾"><span class="post-toc-text">1.回顾</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-桶排序"><span class="post-toc-text">2.桶排序</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-计数排序"><span class="post-toc-text">3.计数排序</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-基数排序"><span class="post-toc-text">4.基数排序</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
   
