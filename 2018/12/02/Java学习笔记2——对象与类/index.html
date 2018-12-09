@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Java学习笔记2——类与继承 | roseduan的个人博客</title>
+  <title>Java学习笔记2——类、继承、接口 | roseduan的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="roseduan,roseduan's blog">
@@ -11,14 +11,14 @@
   <meta name="description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。 2.自定义类">
 <meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习笔记2——类与继承">
+<meta property="og:title" content="Java学习笔记2——类、继承、接口">
 <meta property="og:url" content="http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
 <meta property="og:description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。 2.自定义类">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-06T13:49:56.137Z">
+<meta property="og:updated_time" content="2018-12-08T13:35:32.763Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习笔记2——类与继承">
+<meta name="twitter:title" content="Java学习笔记2——类、继承、接口">
 <meta name="twitter:description" content="1.面向对象 1.类：类是构造对象的蓝图或模板，由类构造对象的过程称为创建类的实例。 2.对象的三个特性：  对象的行为 对象的状态 对象标识  3.类之间有常见的三种关系：  依赖（uses-a）：一个类的方法操纵另一个类的对象 聚合（has-a）：一个类的对象包含另一个类的对象 继承（is-a）：一个类继承另一个类  4.一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。 2.自定义类">
   
   
@@ -117,7 +117,7 @@
         
   
     <h1 class="post-title" itemprop="name">
-      Java学习笔记2——类与继承
+      Java学习笔记2——类、继承、接口
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -205,11 +205,28 @@
 <p>2.除了抽象方法外，抽象类还可以包括具体数据和具体方法。</p>
 <p>3.如果将一个类声明为抽象的，就不能创建这个类的对象。但是可以定义一个抽象类的对象变量，引用一个不是抽象的子类的对象。</p>
 <p>4.equals方法：用于检测一个对象是否等于另外一个对象，即判断两个对象是否具有相同的引用。</p>
+<p><strong>8.反射</strong></p>
+<p>1.获取Class类对象的三种方式：</p>
+<ul>
+<li>对象引用.getClass()</li>
+<li>Class.forName(“类路径”);</li>
+<li>类名.class</li>
+</ul>
+<p>2.Class对象有一个newInstance()方法，这个方法要求类必须有一个无参的构造器，因为该方法只调用无参构造器，否则会报错。</p>
+<p>3.反射机制最重要的内容：检查类的结构。在java.lang.reflect包中有三个类Field、Method、Constructor分别描述类的实例域、方法、构造器。</p>
+<p>4.Class类中的getFields、getMethods、getConstructors方法将返回类提供的public域、方法和构造器，其中包括父类的公有成员。而getDeclareFields这些方法将返回类中的全部域、方法和构造器，不包括父类的成员。</p>
+<p><strong>9.继承设计技巧</strong></p>
+<p>1.将公共操作和实例域放在父类当中</p>
+<p>2.不要使用protected声明的实例域</p>
+<p><strong>10.接口</strong></p>
+<p>接口主要用来描述类具有什么功能，而不给出每个功能的具体实现</p>
+<p>1.接口中的所有方法自动的属于public，因为不用提供关键字public。</p>
+<p>2.接口不能含有实例域，也不能在接口中实现方法。接口中可以有变量，但都默认为是final的。接口中可以有静态的实现方法。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月06日 21:49</p>
-        <p>原始链接： <a class="post-url" href="/2018/12/02/Java学习笔记2——对象与类/" title="Java学习笔记2——类与继承">http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/</a></p>
+        <p>最后更新： 2018年12月08日 21:35</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/02/Java学习笔记2——对象与类/" title="Java学习笔记2——类、继承、接口">http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
                 <img src="/images/头像.png" alt="roseduan">
@@ -266,7 +283,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——类与继承》 — roseduan的个人博客&pic=/images/Java.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——类、继承、接口》 — roseduan的个人博客&pic=/images/Java.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -276,7 +293,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——类与继承》 — roseduan的个人博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&title=《Java学习笔记2——类、继承、接口》 — roseduan的个人博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -286,7 +303,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java学习笔记2——类与继承》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&via=http://roseduan.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java学习笔记2——类、继承、接口》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/02/Java学习笔记2——对象与类/&via=http://roseduan.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -404,7 +421,7 @@
             <a class="category-link" href="/categories/Java基础知识/">Java基础知识</a><a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a><a class="category-link" href="/categories/无事杂谈/">无事杂谈</a>
         </div>
         <div id="sidebar-menu-box-tags">
-            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
         </div>
     </div>
     <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
@@ -437,7 +454,7 @@
     <div class="mobile-header-tag-container">
         <span class="title">Tags</span>
         <div id="mobile-header-container-tags">
-            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+            <a href="/tags/Java基础/" style="font-size: 13.33px;">Java基础</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/排序算法/" style="font-size: 16.67px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
         </div>
     </div>
 </div>
