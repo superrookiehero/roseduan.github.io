@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>数据结构与算法——二分查找 | roseduan的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="roseduan,roseduan's blog">
+  
+  <meta name="description" content="1.二分查找的实现二分查找的思路其实比较的简单，在生活当中的应用也十分的广泛：在一个有序的数据集合中，我们要查找一个数据，就直接取数据集中间位置的数据，将它和我们要查找的数据进行对比，如果大于目标值，则在较小的那个区间继续查找，如果小于目标值，则在较大的那个区间继续查找。 例如我们要在一个有序的集合里[1，3，5，6，7，8，10]，查找5这个值，那么二分查找的过程就如下图所示，经过三次查找操作就">
+<meta name="keywords" content="二分查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法——二分查找">
+<meta property="og:url" content="http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/index.html">
+<meta property="og:site_name" content="roseduan的个人博客">
+<meta property="og:description" content="1.二分查找的实现二分查找的思路其实比较的简单，在生活当中的应用也十分的广泛：在一个有序的数据集合中，我们要查找一个数据，就直接取数据集中间位置的数据，将它和我们要查找的数据进行对比，如果大于目标值，则在较小的那个区间继续查找，如果小于目标值，则在较大的那个区间继续查找。 例如我们要在一个有序的集合里[1，3，5，6，7，8，10]，查找5这个值，那么二分查找的过程就如下图所示，经过三次查找操作就">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://roseduan.github.io/images/bucketSort/search.png">
+<meta property="og:updated_time" content="2018-12-12T08:55:24.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构与算法——二分查找">
+<meta name="twitter:description" content="1.二分查找的实现二分查找的思路其实比较的简单，在生活当中的应用也十分的广泛：在一个有序的数据集合中，我们要查找一个数据，就直接取数据集中间位置的数据，将它和我们要查找的数据进行对比，如果大于目标值，则在较小的那个区间继续查找，如果小于目标值，则在较大的那个区间继续查找。 例如我们要在一个有序的集合里[1，3，5，6，7，8，10]，查找5这个值，那么二分查找的过程就如下图所示，经过三次查找操作就">
+<meta name="twitter:image" content="https://roseduan.github.io/images/bucketSort/search.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">roseduan&#39;s blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/头像.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        roseduan&#39;s blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Hello，这是我的个人博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="roseduan" target="_blank" href="/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/roseduan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/huangminhow">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                        <a title="weixin" target="_blank" href="https://mp.weixin.qq.com/s?__biz=MzI0Njg1MTUxOA==&mid=100000527&idx=1&sn=76503c1a6bad94413a6c32e5e18bfe1c&chksm=69b9b1de5ece38c894610770e8b67d73ff9fcf95ef27d0173b656bf1518211d5a700b38352d3#rd">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-数据结构与算法——二分查找" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      数据结构与算法——二分查找
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/数据结构与算法/">数据结构与算法</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-12-11
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h4 id="1-二分查找的实现"><a href="#1-二分查找的实现" class="headerlink" title="1.二分查找的实现"></a>1.二分查找的实现</h4><p>二分查找的思路其实比较的简单，在生活当中的应用也十分的广泛：在一个有序的数据集合中，我们要查找一个数据，就直接取数据集中间位置的数据，将它和我们要查找的数据进行对比，如果大于目标值，则在较小的那个区间继续查找，如果小于目标值，则在较大的那个区间继续查找。</p>
+<p>例如我们要在一个有序的集合里[1，3，5，6，7，8，10]，查找5这个值，那么二分查找的过程就如下图所示，经过三次查找操作就能够找到。</p>
+<p><img src="https://roseduan.github.io/images/bucketSort/search.png" alt=""></p>
+<p>二分查找的时间复杂度是O(logn)，是一种非常高效的查找算法，即便是要查找的数据范围非常的大，例如2<sup>32</sup>（大约等于42亿），也能够在很短的时间内找到，最多只需要32次就能找到。</p>
+<p>二分查找的思路类似于分治思想，所以代码可以通过递归来完成，也可以用循环来实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinarySearch</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//找到指定的数据的话，返回其下标，未找到则返回-1</span></span><br><span class="line">    <span class="comment">//======================1.使用循环实现=========================</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchByCycle</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = data.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);<span class="comment">//相当于mid = (low + high) / 2</span></span><br><span class="line">            <span class="keyword">if</span> (data[mid] == value) <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (data[mid] &lt; value) low = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> high = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//========================2.使用递归实现=========================</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearchByRecursion</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> searchInternally(data, <span class="number">0</span>, data.length - <span class="number">1</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">searchInternally</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(low &gt; high) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(data[mid] == value) <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(data[mid] &lt; value) <span class="keyword">return</span> searchInternally(data, mid + <span class="number">1</span>, high, value);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> searchInternally(data, low, mid - <span class="number">1</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-二分查找的局限性"><a href="#2-二分查找的局限性" class="headerlink" title="2.二分查找的局限性"></a>2.二分查找的局限性</h4><p>二分查找实际上是存在很大的局限性的，首先，它必须要求数据存储在顺序表这种结构之上，就像数组，可以支持按下标访问元素。如果是链表这种结构的话，不支持随机访问元素，只能遍历查找，这样应用二分查找的话时间复杂度就会很高了。</p>
+<p>其次，数据必须是有序的，假如数据是无序的话，我们就要对其进行排序，前面说到，一般采用的排序算法时间复杂度至少是O(nlogn)。所以，如果对频繁进行插入和删除的数据进行查找的话，维护有序的成本就会比较高。</p>
+<p>最后，二分查找不适用于数据规模太小的情况，例如只有10个、20个数据等，直接使用遍历查找即可。数据量较大时才能体现出二分查找的优势。</p>
+<h4 id="3-变形的二分查找问题"><a href="#3-变形的二分查找问题" class="headerlink" title="3.变形的二分查找问题"></a>3.变形的二分查找问题</h4><p>上面实现的二分查找算法是不是不难？其实那是针对的最简单的一种二分查找，数据是有序、并且无重复的，但是，如果是针对一些变形的二分查找，实现起来就没那么简单了。接下来看看几种常见的二分查找的变形问题。</p>
+<p><strong>1.查找第一个值等于给定值</strong></p>
+<p>假如有一个数组data[1,3,5,5,5,7,8,10,12]，现在我们要找第一个等于5的值，该怎么实现呢？假如用上面实现的普通二分查找，取中间值data[4]=5，刚好等于要查找的值5，所以程序就返回下标4。但是很明显不正确，因为我们要找的是第一个5，下标为2，那应该怎么实现呢？先来看看代码吧：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以看到，当data[mid]大于或者小于value的时候，和普通的二分查找不变，更新high或者low的值。但是，当data[mid] == value的时候，我们需要进行判断，第一种情况：如果mid等于0，表示这是数组的第一个元素，那肯定是我们要找的了，所以返回mid；第二种情况：如果data[mid]前面一个元素不等于value，那么data[mid]肯定就是第一个等于value的值了，所以返回mid。</p>
+<p><strong>2.查找最后一个值等于给定值</strong></p>
+<p>这个问题和上面的问题其实很相似，我这里直接给出代码，你结合看看就能够理解了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找最后一个值等于给定值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findLastTarget</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> length = data.length;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> high = length - <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(data[mid] &gt; value) high = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(data[mid] &lt; value) low = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(mid == length - <span class="number">1</span> || data[mid + <span class="number">1</span>] != value) <span class="keyword">return</span> mid;</span><br><span class="line">			<span class="keyword">else</span> low = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重点就在于data[mid] == value的时候的判断，假如mid是数组的最后一个元素，或者mid前面那个元素不等于valaue，那么mid就是我们要查找的值下标。</p>
+<p><strong>3.查找第一个大于等于给定值</strong></p>
+<p>例如一个数组data[1,3,5,5,5,8,8,8,10,12]，我们要查找第一个大于等于7的值，就是下标为5的值8，应该怎么做呢？实际上实现的思路和上面的两种问题类似，代码其实还更简洁：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>当data[mid]小于value的时候，正常更新low的值；当data[mid]大于等于value的时候，需要进行判断，如果mid是数组的第一个值，那么肯定就是要找的了，如果mid前面的那个值小于value，说明mid这个值就是第一个大于等于value的值，所以直接返回。否则的话，就更新high的值。</p>
+<p><strong>4.查找最后一个小于等于给定值</strong></p>
+<p>有了上面三种变形问题，其实这就很简单了，我直接给出代码，你可以结合理解一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查找最后一个小于等于给定值</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findLastSmallerThanTarget</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> length = data.length;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> high = length - <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(low &lt;= high) &#123;</span><br><span class="line">		<span class="keyword">int</span> mid = low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(data[mid] &gt; value) high = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(mid == length - <span class="number">1</span> || data[mid + <span class="number">1</span>] &gt; value) <span class="keyword">return</span> mid;</span><br><span class="line">			<span class="keyword">else</span> low = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年12月12日 16:55</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/11/数据结构与算法——二分查找/" title="数据结构与算法——二分查找">http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/</a></p>
+        <footer>
+            <a href="http://roseduan.github.io">
+                <img src="/images/头像.png" alt="roseduan">
+                roseduan
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的支持我是继续写作的动力
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/&title=《数据结构与算法——二分查找》 — roseduan的个人博客&pic=/images/search.jpeg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/&title=《数据结构与算法——二分查找》 — roseduan的个人博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构与算法——二分查找》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/&via=http://roseduan.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://roseduan.github.io/2018/12/11/数据结构与算法——二分查找/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/二分查找/" class="color5">二分查找</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-二分查找的实现"><span class="post-toc-text">1.二分查找的实现</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-二分查找的局限性"><span class="post-toc-text">2.二分查找的局限性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-变形的二分查找问题"><span class="post-toc-text">3.变形的二分查找问题</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/12/11/Java学习笔记4——集合/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Java学习笔记4——集合
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/12/09/Java学习笔记3——异常和泛型/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Java学习笔记3——异常和泛型</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 roseduan<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://roseduan.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Java基础知识/">Java基础知识</a><a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a><a class="category-link" href="/categories/无事杂谈/">无事杂谈</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Java基础/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/排序算法/" style="font-size: 13.33px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Java基础/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/排序算法/" style="font-size: 13.33px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

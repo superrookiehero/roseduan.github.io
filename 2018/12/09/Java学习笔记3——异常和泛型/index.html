@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Java学习笔记3——异常和泛型 | roseduan的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="roseduan,roseduan's blog">
+  
+  <meta name="description" content="一、异常 1.异常分类 所有的异常都是由Throwable继承而来的，分为Error和Exception。 error表示Java运行时系统的内部错误和资源耗尽的错误，不能抛出这种类型的对象。 exception分为RuntimeException和其他异常：由程序错误导致的异常属于RuntimeException；而程序本身没有问题，但由于像I/O这样的问题导致的异常属于其他异常。  如果出现R">
+<meta name="keywords" content="Java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java学习笔记3——异常和泛型">
+<meta property="og:url" content="http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/index.html">
+<meta property="og:site_name" content="roseduan的个人博客">
+<meta property="og:description" content="一、异常 1.异常分类 所有的异常都是由Throwable继承而来的，分为Error和Exception。 error表示Java运行时系统的内部错误和资源耗尽的错误，不能抛出这种类型的对象。 exception分为RuntimeException和其他异常：由程序错误导致的异常属于RuntimeException；而程序本身没有问题，但由于像I/O这样的问题导致的异常属于其他异常。  如果出现R">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-11T10:49:35.191Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java学习笔记3——异常和泛型">
+<meta name="twitter:description" content="一、异常 1.异常分类 所有的异常都是由Throwable继承而来的，分为Error和Exception。 error表示Java运行时系统的内部错误和资源耗尽的错误，不能抛出这种类型的对象。 exception分为RuntimeException和其他异常：由程序错误导致的异常属于RuntimeException；而程序本身没有问题，但由于像I/O这样的问题导致的异常属于其他异常。  如果出现R">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">roseduan&#39;s blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>归档</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/头像.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        roseduan&#39;s blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        Hello，这是我的个人博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="roseduan" target="_blank" href="/">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/roseduan">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/huangminhow">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                        <a title="weixin" target="_blank" href="https://mp.weixin.qq.com/s?__biz=MzI0Njg1MTUxOA==&mid=100000527&idx=1&sn=76503c1a6bad94413a6c32e5e18bfe1c&chksm=69b9b1de5ece38c894610770e8b67d73ff9fcf95ef27d0173b656bf1518211d5a700b38352d3#rd">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Java学习笔记3——异常和泛型" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Java学习笔记3——异常和泛型
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Java基础知识/">Java基础知识</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-12-09
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h4 id="一、异常"><a href="#一、异常" class="headerlink" title="一、异常"></a>一、异常</h4><hr>
+<p><strong>1.异常分类</strong></p>
+<p>所有的异常都是由Throwable继承而来的，分为Error和Exception。</p>
+<p>error表示Java运行时系统的内部错误和资源耗尽的错误，不能抛出这种类型的对象。</p>
+<p>exception分为RuntimeException和其他异常：由程序错误导致的异常属于RuntimeException；而程序本身没有问题，但由于像I/O这样的问题导致的异常属于其他异常。</p>
+<blockquote>
+<p>如果出现RuntimeException，那么就一定是你的问题，这是一条很有道理的规则。</p>
+</blockquote>
+<p><strong>2.声明异常</strong></p>
+<p>1.Java语言规范将派生于Error类和RuntimeException类的所有异常叫做“未检查异常”，所有的其他异常叫做“已检查异常”</p>
+<p>2.在方法首部声明可能抛出的异常（throws Exception），抛出的必须是已检查异常。</p>
+<p>3.如果在子类中覆盖了父类的一个方法，子类方法中声明的已检查异常不能比父类方法中声明的异常更通用。也就是说，子类中的方法可以抛出一个更特定的异常，或者不抛出异常。</p>
+<p>4.如何抛出一个异常？</p>
+<ul>
+<li>找到一个合适的异常类</li>
+<li>创建这个类的对象</li>
+<li>将对象抛出，throw new Exception();</li>
+</ul>
+<p>5.自定义异常：应该继承Exception或其子类。</p>
+<p><strong>3.捕获异常</strong></p>
+<p>1.遇到错误，会跳过try中的剩余内容，执行catch中的内容。</p>
+<p>2.假设利用return语句从try语句中退出，在方法返回前，finally子句的内容将执行。如果finally子句中也有一个return语句，这个返回值将会覆盖原始的返回值。</p>
+<p>3.使用异常机制的技巧：</p>
+<ul>
+<li>异常处理不能代替简单的测试</li>
+<li>不要过分的细化异常</li>
+<li>利用异常层次结构。例如不要只抛出RuntimeExcption，而应该寻找更合适的子类，或者自己创建异常类。</li>
+</ul>
+<h4 id="二、泛型"><a href="#二、泛型" class="headerlink" title="二、泛型"></a>二、泛型</h4><hr>
+<p><strong>1.为什么要使用泛型</strong></p>
+<p>1.泛型程序设计意味着编写的代码可以被很多不同类型的对象所重用。</p>
+<p>2.在泛型出现之前，Java使用的继承来解决这个问题，但是会遇到类型转换的问题。泛型提供了一种类型参数的方案，可以让程序的可读性更好。</p>
+<p>3.泛型程序设计的三个级别：1.仅仅使用泛型，不关心它们的工作方式和原因。2.系统的学习Java泛型。3.实现自己的泛型类与泛型方法。</p>
+<p><strong>2.定义泛型</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T second;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.second = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(T first, T second)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">        <span class="keyword">this</span>.second = second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFirst</span><span class="params">(T first)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getSecond</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSecond</span><span class="params">(T second)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.second = second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.定义泛型方法：<code>public static&lt;T&gt; T getMax(){}</code>，<t>表示这是一个泛型方法，T表示返回值类型。</t></p>
+<p>3.类型变量的限定：<code>public static&lt;T extends Comparable&gt; T getMax(){}</code>，这里表示只能接收实现了Comparable接口的类。</p>
+<p>一个类型变量可以有多个限定，例如：<code>T extends Comparable &amp; Serializable</code>。</p>
+<p><strong>3.泛型约束</strong></p>
+<p>1.不能使用基本类型实例化参数类型，例如不能这样使用：<code>Pair&lt;double&gt;</code>，而应该使用包装类：<code>Pair&lt;Double&gt;</code>。原因：类型擦除之后，Pair中只包含Object，而Object不能存储double值。</p>
+<p>2.不能创建参数化类型的数组，例如<code>Pair&lt;String&gt;[] table = new Pair&lt;&gt;[10];//error</code></p>
+<p>3.不能使用像new T[], new T(), T.class这样的表达式。</p>
+<p>4.如果泛型方法返回一个T[]数组，可以使用反射来构建T[]数组：<code>T[] mm = (T[]) Array.newInstance(a.getClass.getComponentType(), 2);</code>，例如下面这个方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>&lt;T extends Comparable&gt; T[] minmax(T[] arr) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || arr.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        T min = arr[<span class="number">0</span>];</span><br><span class="line">        T max = arr[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (min.compareTo(arr[i]) &gt; <span class="number">0</span>) min = arr[i];</span><br><span class="line">            <span class="keyword">if</span> (max.compareTo(arr[i]) &lt; <span class="number">0</span>) max = arr[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        T[] result = (T[])Array.newInstance(arr.getClass().getComponentType(), <span class="number">2</span>);</span><br><span class="line">        result[<span class="number">0</span>] = min;</span><br><span class="line">        result[<span class="number">1</span>] = max;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>5.不能在静态域或方法中引用类型变量。<code>private static T id;  //error</code></p>
+<p><strong>4.通配符类型</strong></p>
+<p>1.通配符类型<code>Pair&lt;? extends Employee&gt;</code>，表示任何泛型Pair，它的参数类型必须是Employee的子类，例如：<code>Pair&lt;Manager&gt;</code>，而不能是 <code>Pair&lt;String&gt;</code>。实际上，Pair<employee>和Pair<manager>都是Pair&lt;? extendx Employee&gt;的子类型。</manager></employee></p>
+<p>带有这种类型的泛型，可以对其子类型对象进行get，但不能set，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Manager m1 = <span class="keyword">new</span> Manager(<span class="number">23</span>,<span class="string">"Jack"</span>,<span class="number">3400</span>);</span><br><span class="line">Manager m2 = <span class="keyword">new</span> Manager(<span class="number">25</span>,<span class="string">"Oak"</span>,<span class="number">3600</span>);</span><br><span class="line">Pair&lt;Manager&gt; managerPair = <span class="keyword">new</span> Pair&lt;&gt;(m1,m2);</span><br><span class="line"></span><br><span class="line">Pair&lt;? extends Employee&gt; employeePair = managerPair;</span><br><span class="line">employeePair.setFirst(<span class="keyword">new</span> Manager(<span class="number">232</span>,<span class="string">"Rose"</span>,<span class="number">4300</span>)); <span class="comment">//error</span></span><br><span class="line">Employee first = employeePair.getFirst();  <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+<p>2.<code>Pair&lt;? super Manager&gt;</code>表示参数类型是Manager的超类。</p>
+<p>带有这种类型的泛型，可以对其类型对象进行set，但不能get（会返回一个Object对象，但不能强制转换成其父类）。</p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年12月11日 18:49</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/09/Java学习笔记3——异常和泛型/" title="Java学习笔记3——异常和泛型">http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/</a></p>
+        <footer>
+            <a href="http://roseduan.github.io">
+                <img src="/images/头像.png" alt="roseduan">
+                roseduan
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的支持我是继续写作的动力
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/&title=《Java学习笔记3——异常和泛型》 — roseduan的个人博客&pic=/images/Java.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/&title=《Java学习笔记3——异常和泛型》 — roseduan的个人博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java学习笔记3——异常和泛型》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/&via=http://roseduan.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://roseduan.github.io/2018/12/09/Java学习笔记3——异常和泛型/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/Java基础/" class="color2">Java基础</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、异常"><span class="post-toc-text">一、异常</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、泛型"><span class="post-toc-text">二、泛型</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/12/11/数据结构与算法——二分查找/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          数据结构与算法——二分查找
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/12/09/数据结构与算法——排序（四）/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">数据结构与算法——排序（四）</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2018 roseduan<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://roseduan.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Java基础知识/">Java基础知识</a><a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a><a class="category-link" href="/categories/无事杂谈/">无事杂谈</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/Java基础/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/排序算法/" style="font-size: 13.33px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>归档</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/Java基础/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/二分查找/" style="font-size: 10px;">二分查找</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/排序算法/" style="font-size: 13.33px;">排序算法</a> <a href="/tags/无事杂谈/" style="font-size: 20px;">无事杂谈</a> <a href="/tags/栈与队列/" style="font-size: 10px;">栈与队列</a> <a href="/tags/链表/" style="font-size: 10px;">链表</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
