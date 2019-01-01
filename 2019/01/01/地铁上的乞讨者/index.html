@@ -3,23 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>数据结构与算法——堆和堆排序 | roseduan的个人博客</title>
+  <title>地铁上的乞讨者 | roseduan的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="roseduan,roseduan's blog">
   
-  <meta name="description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。 对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶">
-<meta name="keywords" content="堆和堆排序">
+  <meta name="description" content="1. 一件小事，却引发了我一些思考。 前不久，我在地铁上的时候，正在玩自己的手机。突然迎面走来一个女生，年龄不大，20岁左右，穿着一件红色的外套，手里拿着一个小本本给我看，上面写了很多名字，还有金额数量，大部分都是20，估计这是她一天的成果吧。她还向我打着手势，原来她是一个聋哑人，我明白她站在我面前是为什么了。我没有犹豫，从兜里拿出钱包掏出20块钱递给她，她还让我在小本本上写上我的名字，我示意算了">
+<meta name="keywords" content="无事杂谈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法——堆和堆排序">
-<meta property="og:url" content="http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/index.html">
+<meta property="og:title" content="地铁上的乞讨者">
+<meta property="og:url" content="http://roseduan.github.io/2019/01/01/地铁上的乞讨者/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
-<meta property="og:description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。 对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶">
+<meta property="og:description" content="1. 一件小事，却引发了我一些思考。 前不久，我在地铁上的时候，正在玩自己的手机。突然迎面走来一个女生，年龄不大，20岁左右，穿着一件红色的外套，手里拿着一个小本本给我看，上面写了很多名字，还有金额数量，大部分都是20，估计这是她一天的成果吧。她还向我打着手势，原来她是一个聋哑人，我明白她站在我面前是为什么了。我没有犹豫，从兜里拿出钱包掏出20块钱递给她，她还让我在小本本上写上我的名字，我示意算了">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-24T13:50:55.807Z">
+<meta property="og:updated_time" content="2019-01-01T04:28:44.012Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构与算法——堆和堆排序">
-<meta name="twitter:description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。 对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶">
+<meta name="twitter:title" content="地铁上的乞讨者">
+<meta name="twitter:description" content="1. 一件小事，却引发了我一些思考。 前不久，我在地铁上的时候，正在玩自己的手机。突然迎面走来一个女生，年龄不大，20岁左右，穿着一件红色的外套，手里拿着一个小本本给我看，上面写了很多名字，还有金额数量，大部分都是20，估计这是她一天的成果吧。她还向我打着手势，原来她是一个聋哑人，我明白她站在我面前是为什么了。我没有犹豫，从兜里拿出钱包掏出20块钱递给她，她还让我在小本本上写上我的名字，我示意算了">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -110,14 +110,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-数据结构与算法——堆和堆排序" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-地铁上的乞讨者" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      数据结构与算法——堆和堆排序
+      地铁上的乞讨者
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -125,12 +125,12 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/数据结构与算法/">数据结构与算法</a>
+                      <a href="/categories/无事杂谈/">无事杂谈</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2018-12-23
+          <i class="fa fa-calendar"></i>  2019-01-01
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -146,30 +146,25 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p><strong>1.什么是堆</strong></p>
-<p>堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。</p>
-<p>对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶堆。看看下面的图就能懂了。</p>
-<p>图片1</p>
-<p>其中，1 是大顶堆，2 是小顶堆，3 不是堆。</p>
-<p><strong>2.堆是如何存储的</strong></p>
-<p>其实，堆可以按照完全二叉树的存储方式来储存，因为完全二叉树是比较省空间的，所以我们可以直接用数组来存储，然后按照数组下标来取出堆中数据。参照下图，来看看堆的存储：</p>
-<p>图片2</p>
-<p>其中位置为 i 的左子节点是 2 <em> i + 1，右子节点是 2 </em> i + 2，父节点是 (i - 1) / 2。</p>
-<p><strong>3.堆的几种操作</strong></p>
-<p>明白了堆是怎样储存的，我们在来看看堆最常见的两个操作：往堆中插入元素和删除堆顶元素。</p>
-<p>首先，如果要往堆中插入一个元素，我们先将其插入到数组中最后一个位置，然后与其父节点的值进行比较，如果大于父节点，则交换位置，继续比较。看看下面的图你就明白了：</p>
-<p>图片3</p>
-<p>交换操作的代码，我也放到这里：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>接下来看看第二种操作：删除堆顶元素。根据堆的定义，堆顶元素其实就是堆的最大或最小元素。删除堆顶元素，我们只需要移除数组中的第 0 个元素，然后再进行堆化，让堆继续保持顺序。那该怎么进行堆化呢？首先我们直接将堆中的最后一个元素移到堆顶，然后与其左右子节点的值进行比较，找到较大的那么子节点，交换位置，然后继续比较，你可以结合代码来理解一下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>4.堆排序</strong></p>
-<p>现在来看看里用堆这种数据结构是怎么实现排序功能的。堆排序的时间复杂度非常的稳定，是O(nlogn)，并且是原地排序算法，具体是怎么实现的呢？我们一般把堆排序分为两个步骤：建堆和排序。</p>
+            <p><strong>1.</strong></p>
+<p>一件小事，却引发了我一些思考。</p>
+<p>前不久，我在地铁上的时候，正在玩自己的手机。突然迎面走来一个女生，年龄不大，20岁左右，穿着一件红色的外套，手里拿着一个小本本给我看，上面写了很多名字，还有金额数量，大部分都是20，估计这是她一天的成果吧。她还向我打着手势，原来她是一个聋哑人，我明白她站在我面前是为什么了。我没有犹豫，从兜里拿出钱包掏出20块钱递给她，她还让我在小本本上写上我的名字，我示意算了不写了，她还向我伸出了大拇指。然后她走了，挨个向其他地铁乘客做同样的请求。</p>
+<p>当时我还挺开心，觉得自己做了一件好事，也得到了别人的认可。</p>
+<p><strong>2.</strong></p>
+<p>谁知，没过两天，又是在地铁上，我又遇到了一个向我行同样乞求的人，让我惊讶的是，这次这个人，和上次遇到的那个女生穿着几乎一样，同样是那件红色的外套，还有同样的小本本。这一次，我犹豫了，也不知道为什么，就是不知道该不该给他钱。在我犹豫的几秒钟内，他离去了，转向其他人。</p>
+<p>当时我就觉得很惊讶，难道地铁上面的这些人都是组队乞讨么，在我经常坐的两趟地铁有这样的人，那么其他地铁线肯定也有，加之地铁人流量大，每个人平均大概捐款 20，只要一天有一二十个人捐款，那一天的收入就是三四百的样子，那月入岂不是过万了？ </p>
+<p><strong>3.</strong></p>
+<p>故事还没完，碰巧的是，今天乘坐地铁的时候，我又再次遇上了一个乞讨的人。是个年轻的男生，拿着个残疾证，估计是个聋哑人，穿着便装，手上的小本本和以前的那些人是一样的，只不过装备稍有“升级”，微信和支付宝的二维码也拿上了。然后在我的手边蹭，这次我的态度很坚决，不给！原因其实很简单，假如他真的是聋哑人的话，对于这种遭遇，我只能哀其不幸，但是根据我的观察，他身体还不错，其他方面没问题，随便找个工作养活自己完全能行，再说他是一个男人，年轻的小伙子，如果仅仅因为某些身体障碍，就靠博取别人的同情来赚钱的话，我只能怒其不争。</p>
+<p>当然那只是当时一时的想法，现在想来，其实我也不知道该怎么做，心理也比较的沉重。给钱的话，一方面我也没啥钱，要是我很有钱的话，随随便便给点当然没什么。不给钱的话，感觉自己背负了很大的心理负担，总觉得自己做了什么亏心事一样。面对这种的情况，诸位也可以想想，自己应该怎么做呢。</p>
+<p><strong>4.</strong></p>
+<p>类似乞讨者这样的社会弱势群体，应该分为两类。一是假装的，伪造各种残疾证、悲惨经历之类的，博取别人的同情心，对于这种人我是比较鄙视的。一方面，自己明明有能力靠正当的工作来养活自己，却偏偏要采取这种对自己不负责的方式，将生计维系在别人的同情心之上。另一方面，面对这种情况，像我这样的普通大众，其实很难分辨对方究竟是不是真的弱势群体，于是，无论是给钱还是不给钱，心里总会觉得不太舒服。</p>
+<p>第二类，不可否认的是，我们的社会当中肯定存在真正的弱势群体。于是乎，像我们普通大众，肯定只能先把自己的生活过好了，让自己至少有一点经济基础，然后再力所能及的帮助一些人，努力让自己成为一个对社会有用的人，穷则独善其身，达则兼济天下。</p>
+<p>但是，个体的力量始终是弱小的，杯水车薪。大多数的社会弱势群体，其实还是需要我们的国家出力来帮助照料。一个国家是否强大，真的不是看这个国家GDP增速多少，GDP排名多高，修了多少高铁动车，互联网发展多快，奥运会拿了多少金牌，因为这些，跟穷苦的社会弱势群体没有太大的关系。一个国家是否真的强大，就看它的社会弱势群体是怎样被对待的。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月24日 21:50</p>
-        <p>原始链接： <a class="post-url" href="/2018/12/23/数据结构与算法——堆和堆排序/" title="数据结构与算法——堆和堆排序">http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/</a></p>
+        <p>最后更新： 2019年01月01日 12:28</p>
+        <p>原始链接： <a class="post-url" href="/2019/01/01/地铁上的乞讨者/" title="地铁上的乞讨者">http://roseduan.github.io/2019/01/01/地铁上的乞讨者/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
                 <img src="/images/头像.png" alt="roseduan">
@@ -226,7 +221,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/&title=《数据结构与算法——堆和堆排序》 — roseduan的个人博客&pic=images/heap.jpeg" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://roseduan.github.io/2019/01/01/地铁上的乞讨者/&title=《地铁上的乞讨者》 — roseduan的个人博客&pic=http://roseduan.github.ioimages/头像.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -236,22 +231,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/&title=《数据结构与算法——堆和堆排序》 — roseduan的个人博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://roseduan.github.io/2019/01/01/地铁上的乞讨者/&title=《地铁上的乞讨者》 — roseduan的个人博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://roseduan.github.io/2019/01/01/地铁上的乞讨者/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构与算法——堆和堆排序》 — roseduan的个人博客&url=http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/&via=http://roseduan.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《地铁上的乞讨者》 — roseduan的个人博客&url=http://roseduan.github.io/2019/01/01/地铁上的乞讨者/&via=http://roseduan.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://roseduan.github.io/2019/01/01/地铁上的乞讨者/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -261,7 +256,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://roseduan.github.io/2019/01/01/地铁上的乞讨者/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -273,7 +268,7 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/堆和堆排序/" class="color1">堆和堆排序</a>
+    <a href="/tags/无事杂谈/" class="color5">无事杂谈</a>
       
   </li>
 
@@ -287,19 +282,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/01/01/地铁上的乞讨者/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-          地铁上的乞讨者
-        
-      </span>
-    </a>
   
-  
-    <a href="/2018/12/11/Java学习笔记4——集合/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">Java学习笔记4——集合</span>
+    <a href="/2018/12/23/数据结构与算法——堆和堆排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">数据结构与算法——堆和堆排序</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
