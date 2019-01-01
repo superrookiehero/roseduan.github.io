@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="roseduan,roseduan's blog">
   
-  <meta name="description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？">
+  <meta name="description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。 对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶">
 <meta name="keywords" content="堆和堆排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构与算法——堆和堆排序">
 <meta property="og:url" content="http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/index.html">
 <meta property="og:site_name" content="roseduan的个人博客">
-<meta property="og:description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？">
+<meta property="og:description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。 对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-23T13:04:54.154Z">
+<meta property="og:updated_time" content="2018-12-24T13:50:55.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法——堆和堆排序">
-<meta name="twitter:description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？">
+<meta name="twitter:description" content="1.什么是堆 堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。 对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -147,11 +147,28 @@
       
             
             <p><strong>1.什么是堆</strong></p>
-<p>堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？</p>
+<p>堆（Heap），其实是一种特殊的二叉树，主要满足了二叉树的两个条件：1. 堆是一种完全二叉树，还记得完全二叉树的定义吗？叶节点都在最底下两层，最后一层的节点都靠左排列，并且除了最后一层，其他层的节点个数都要达到最大，这种树叫做完全二叉树。2. 堆中的每个节点的值都必须大于等于（或者小于等于）其左右子节点的值。</p>
+<p>对于堆中的每个节点都大于等于其左右子节点的值，叫做大顶堆，反之，则叫做小顶堆。看看下面的图就能懂了。</p>
+<p>图片1</p>
+<p>其中，1 是大顶堆，2 是小顶堆，3 不是堆。</p>
+<p><strong>2.堆是如何存储的</strong></p>
+<p>其实，堆可以按照完全二叉树的存储方式来储存，因为完全二叉树是比较省空间的，所以我们可以直接用数组来存储，然后按照数组下标来取出堆中数据。参照下图，来看看堆的存储：</p>
+<p>图片2</p>
+<p>其中位置为 i 的左子节点是 2 <em> i + 1，右子节点是 2 </em> i + 2，父节点是 (i - 1) / 2。</p>
+<p><strong>3.堆的几种操作</strong></p>
+<p>明白了堆是怎样储存的，我们在来看看堆最常见的两个操作：往堆中插入元素和删除堆顶元素。</p>
+<p>首先，如果要往堆中插入一个元素，我们先将其插入到数组中最后一个位置，然后与其父节点的值进行比较，如果大于父节点，则交换位置，继续比较。看看下面的图你就明白了：</p>
+<p>图片3</p>
+<p>交换操作的代码，我也放到这里：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接下来看看第二种操作：删除堆顶元素。根据堆的定义，堆顶元素其实就是堆的最大或最小元素。删除堆顶元素，我们只需要移除数组中的第 0 个元素，然后再进行堆化，让堆继续保持顺序。那该怎么进行堆化呢？首先我们直接将堆中的最后一个元素移到堆顶，然后与其左右子节点的值进行比较，找到较大的那么子节点，交换位置，然后继续比较，你可以结合代码来理解一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>4.堆排序</strong></p>
+<p>现在来看看里用堆这种数据结构是怎么实现排序功能的。堆排序的时间复杂度非常的稳定，是O(nlogn)，并且是原地排序算法，具体是怎么实现的呢？我们一般把堆排序分为两个步骤：建堆和排序。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月23日 21:04</p>
+        <p>最后更新： 2018年12月24日 21:50</p>
         <p>原始链接： <a class="post-url" href="/2018/12/23/数据结构与算法——堆和堆排序/" title="数据结构与算法——堆和堆排序">http://roseduan.github.io/2018/12/23/数据结构与算法——堆和堆排序/</a></p>
         <footer>
             <a href="http://roseduan.github.io">
@@ -301,7 +318,7 @@
       <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
-      &copy; 2018 roseduan<br>
+      &copy; 2019 roseduan<br>
       </p>
     </div>
   </div>
