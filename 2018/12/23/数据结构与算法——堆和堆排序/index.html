@@ -29,7 +29,8 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -428,9 +429,11 @@
 <p>首先，如果要往堆中插入一个元素，我们先将其插入到数组中最后一个位置，然后与其父节点的值进行比较，如果大于父节点，则交换位置，继续比较。看看下面的图你就明白了：</p>
 <p>图片3</p>
 <p>交换操作的代码，我也放到这里：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java"><code class="language-java">
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>接下来看看第二种操作：删除堆顶元素。根据堆的定义，堆顶元素其实就是堆的最大或最小元素。删除堆顶元素，我们只需要移除数组中的第 0 个元素，然后再进行堆化，让堆继续保持顺序。那该怎么进行堆化呢？首先我们直接将堆中的最后一个元素移到堆顶，然后与其左右子节点的值进行比较，找到较大的那么子节点，交换位置，然后继续比较，你可以结合代码来理解一下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java"><code class="language-java">
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>4.堆排序</strong></p>
 <p>现在来看看里用堆这种数据结构是怎么实现排序功能的。堆排序的时间复杂度非常的稳定，是O(nlogn)，并且是原地排序算法，具体是怎么实现的呢？我们一般把堆排序分为两个步骤：建堆和排序。</p>
 
