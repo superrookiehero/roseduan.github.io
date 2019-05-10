@@ -36,7 +36,8 @@ public class HelloWorld {
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -422,7 +423,7 @@ public class HelloWorld {
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        969
+                        967
                     </div>
                     
 
@@ -446,17 +447,17 @@ public class HelloWorld {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><strong>1.Java程序示例</strong></p>
-<pre><code class="Java">/*
+<pre class="line-numbers language-Java"><code class="language-Java">/*
   多行注释
   多行注释
 */
 public class HelloWorld {
     //单行注释
     public static void main(String[] args) {
-        System.out.println(&quot;Hello World!&quot;);
+        System.out.println("Hello World!");
     }
 }
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>1.Java对大小写敏感</p>
 <p>2.Java类的命名规范：首字母大写的名词，如果由多个单词组成，则每个单词的首字母都应该大写，称为驼峰式命名。</p>
 <p>3.源代码的文件名必须与公共类的名字相同，并用.java作为扩展名。</p>
@@ -512,12 +513,12 @@ public class HelloWorld {
 <p>2.创建一个数字数组时，所有的元素都会初始化为0，boolean数组的元素会初始化为false，对象数组的元素会初始化为null。</p>
 <p>3.有一个更简单的方法打印数组中的所有值：Arrays.toString()</p>
 <p>4.数组拷贝的两种方法：</p>
-<pre><code class="java">int[] data = {1,2,3,4,5};
-int[] num = Arrays.copyOf(data, data.length * 2);
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> num <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> data<span class="token punctuation">.</span>length <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-int[] rose = new int[10];
-System.arraycopy(data, 0, rose, 0, data.length);
-</code></pre>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> rose <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> rose<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>5.数组排序：Arrays.sort()，此方法采用的是快速排序实现。</p>
 
             </div>

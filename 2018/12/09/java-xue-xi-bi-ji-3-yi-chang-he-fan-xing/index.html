@@ -32,7 +32,8 @@ exception分为RuntimeExcep">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-vs.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -475,37 +476,37 @@ exception分为RuntimeExcep">
 <p>2.在泛型出现之前，Java使用的继承来解决这个问题，但是会遇到类型转换的问题。泛型提供了一种类型参数的方案，可以让程序的可读性更好。</p>
 <p>3.泛型程序设计的三个级别：1.仅仅使用泛型，不关心它们的工作方式和原因。2.系统的学习Java泛型。3.实现自己的泛型类与泛型方法。</p>
 <p><strong>2.定义泛型</strong></p>
-<pre><code class="java">class Pair&lt;T&gt;{
-    private T first;
-    private T second;
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Pair</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token keyword">private</span> T first<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> T second<span class="token punctuation">;</span>
 
-    public Pair() {
-        this.first = null;
-        this.second = null;
-    }
+    <span class="token keyword">public</span> <span class="token function">Pair</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>first <span class="token operator">=</span> null<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>second <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public Pair(T first, T second) {
-        this.first = first;
-        this.second = second;
-    }
+    <span class="token keyword">public</span> <span class="token function">Pair</span><span class="token punctuation">(</span>T first<span class="token punctuation">,</span> T second<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>first <span class="token operator">=</span> first<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>second <span class="token operator">=</span> second<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public T getFirst() {
-        return first;
-    }
+    <span class="token keyword">public</span> T <span class="token function">getFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> first<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public void setFirst(T first) {
-        this.first = first;
-    }
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setFirst</span><span class="token punctuation">(</span>T first<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>first <span class="token operator">=</span> first<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public T getSecond() {
-        return second;
-    }
+    <span class="token keyword">public</span> T <span class="token function">getSecond</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> second<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    public void setSecond(T second) {
-        this.second = second;
-    }
-}
-</code></pre>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setSecond</span><span class="token punctuation">(</span>T second<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>second <span class="token operator">=</span> second<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.定义泛型方法：<code>public static&lt;T&gt; T getMax(){}</code>，<t>表示这是一个泛型方法，T表示返回值类型。</t></p>
 <p>3.类型变量的限定：<code>public static&lt;T extends Comparable&gt; T getMax(){}</code>，这里表示只能接收实现了Comparable接口的类。</p>
 <p>一个类型变量可以有多个限定，例如：<code>T extends Comparable &amp; Serializable</code>。</p>
@@ -514,34 +515,34 @@ exception分为RuntimeExcep">
 <p>2.不能创建参数化类型的数组，例如<code>Pair&lt;String&gt;[] table = new Pair&lt;&gt;[10];//error</code></p>
 <p>3.不能使用像new T[], new T(), T.class这样的表达式。</p>
 <p>4.如果泛型方法返回一个T[]数组，可以使用反射来构建T[]数组：<code>T[] mm = (T[]) Array.newInstance(a.getClass.getComponentType(), 2);</code>，例如下面这个方法：</p>
-<pre><code class="java">public static&lt;T extends Comparable&gt; T[] minmax(T[] arr) {
-        if (arr == null || arr.length == 0) return null;
-        T min = arr[0];
-        T max = arr[0];
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span><span class="token operator">&lt;</span>T <span class="token keyword">extends</span> <span class="token class-name">Comparable</span><span class="token operator">></span> T<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">minmax</span><span class="token punctuation">(</span>T<span class="token punctuation">[</span><span class="token punctuation">]</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr <span class="token operator">==</span> null <span class="token operator">||</span> arr<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
+        T min <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        T max <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-        for (int i = 0; i &lt; arr.length; i++) {
-            if (min.compareTo(arr[i]) &gt; 0) min = arr[i];
-            if (max.compareTo(arr[i]) &lt; 0) max = arr[i];
-        }
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>min<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> min <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>max<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> max <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
 
-        T[] result = (T[])Array.newInstance(arr.getClass().getComponentType(), 2);
-        result[0] = min;
-        result[1] = max;
-        return result;
-    }
-</code></pre>
+        T<span class="token punctuation">[</span><span class="token punctuation">]</span> result <span class="token operator">=</span> <span class="token punctuation">(</span>T<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>Array<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span>arr<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getComponentType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> min<span class="token punctuation">;</span>
+        result<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> max<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>5.不能在静态域或方法中引用类型变量。<code>private static T id;  //error</code></p>
 <p><strong>4.通配符类型</strong></p>
 <p>1.通配符类型<code>Pair&lt;? extends Employee&gt;</code>，表示任何泛型Pair，它的参数类型必须是Employee的子类，例如：<code>Pair&lt;Manager&gt;</code>，而不能是 <code>Pair&lt;String&gt;</code>。实际上，Pair<employee>和Pair<manager>都是Pair&lt;? extendx Employee&gt;的子类型。</manager></employee></p>
 <p>带有这种类型的泛型，可以对其子类型对象进行get，但不能set，例如：</p>
-<pre><code class="java">        Manager m1 = new Manager(23,&quot;Jack&quot;,3400);
-        Manager m2 = new Manager(25,&quot;Oak&quot;,3600);
-        Pair&lt;Manager&gt; managerPair = new Pair&lt;&gt;(m1,m2);
+<pre class="line-numbers language-java"><code class="language-java">        Manager m1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Manager</span><span class="token punctuation">(</span><span class="token number">23</span><span class="token punctuation">,</span><span class="token string">"Jack"</span><span class="token punctuation">,</span><span class="token number">3400</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Manager m2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Manager</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token string">"Oak"</span><span class="token punctuation">,</span><span class="token number">3600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Pair<span class="token operator">&lt;</span>Manager<span class="token operator">></span> managerPair <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Pair</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>m1<span class="token punctuation">,</span>m2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        Pair&lt;? extends Employee&gt; employeePair = managerPair;
-        employeePair.setFirst(new Manager(232,&quot;Rose&quot;,4300)); //error
-        Employee first = employeePair.getFirst();  //ok
-</code></pre>
+        Pair<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Employee</span><span class="token operator">></span> employeePair <span class="token operator">=</span> managerPair<span class="token punctuation">;</span>
+        employeePair<span class="token punctuation">.</span><span class="token function">setFirst</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Manager</span><span class="token punctuation">(</span><span class="token number">232</span><span class="token punctuation">,</span><span class="token string">"Rose"</span><span class="token punctuation">,</span><span class="token number">4300</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//error</span>
+        Employee first <span class="token operator">=</span> employeePair<span class="token punctuation">.</span><span class="token function">getFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//ok</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.<code>Pair&lt;? super Manager&gt;</code>表示参数类型是Manager的超类。</p>
 <p>带有这种类型的泛型，可以对其类型对象进行set，但不能get（会返回一个Object对象，但不能强制转换成其父类）。</p>
 
