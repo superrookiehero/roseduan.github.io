@@ -29,8 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -287,7 +286,7 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -416,7 +415,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.3k
+                        1.4k
                     </div>
                     
 
@@ -443,137 +442,137 @@
 <p>栈其实很好理解，举个例子：办公桌上的一堆文件，后放上去的、位于最上方的，总是最先拿到的；而先放进去的，反而会被压在最后，所以总是最后才能拿到。这种满足了先进后出、后进先出的特点的数据结构，就叫做栈。</p>
 <p><img src="https://roseduan.github.io/images/%E6%A0%88.png" alt=""></p>
 <p>很明显，栈是一种操作受限的数据结构，插入和删除都只能在一端进行，插入操作叫做入栈，删除叫做出栈。那么怎么实现一个栈呢？有两种方式，一是利用数组来实现，这种叫做顺序栈，二是利用链表来实现，叫做链式栈。这里来看看怎么用数组来实现一个顺序栈。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre><code class="java">/**
  * @ClassName ArrayStack
  * @Description 用数组实现顺序栈
  * @Author Rose_Duan
  * @Date 2018/11/4 16:43
  * @Version 1.0
- **/</span>
+ **/
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ArrayStack</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> items<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> count<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//栈中元素的个数</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> n<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//栈容量</span>
+public class ArrayStack {
+    private String[] items;
+    private int count;//栈中元素的个数
+    private int n;//栈容量
 
-    <span class="token comment" spellcheck="true">//不带参的构造器，默认栈容量大小是10</span>
-    <span class="token keyword">public</span> <span class="token function">ArrayStack</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    //不带参的构造器，默认栈容量大小是10
+    public ArrayStack() {
+        this(10);
+    }
 
-    <span class="token keyword">public</span> <span class="token function">ArrayStack</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>items <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span>capacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>n <span class="token operator">=</span> capacity<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    public ArrayStack(int capacity) {
+        this.items = new String[capacity];
+        this.count = 0;
+        this.n = capacity;
+    }
 
-    <span class="token comment" spellcheck="true">//入栈操作</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">push</span><span class="token punctuation">(</span>String item<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//数组容量已满，则无法插入</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">==</span> n<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    //入栈操作
+    public boolean push(String item){
+        //数组容量已满，则无法插入
+        if (this.count == n) return false;
 
-        items<span class="token punctuation">[</span>count<span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">;</span>
-        <span class="token operator">++</span> <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        items[count] = item;
+        ++ this.count;
+        return true;
+    }
 
-    <span class="token comment" spellcheck="true">//出栈操作</span>
-    <span class="token keyword">public</span> String <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//栈为空</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span>
-        String result <span class="token operator">=</span> items<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token operator">--</span> count<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    //出栈操作
+    public String pop(){
+        //栈为空
+        if (this.count == 0) return null;
+        String result = items[this.count - 1];
+        -- count;
+        return result;
+    }
+}
+</code></pre>
 <p>接下来看看时间复杂度：结合代码不难想到，不管是入栈还是出栈，都是在栈一端进行的惭怍，所以插入和删除的时间复杂度都是O(1)。链式栈的定义也比较的简单了，我这里给出了链式栈的简单的两个方法：入栈和出栈：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LinkedListStack</span><span class="token punctuation">{</span>
+<pre><code class="java">public class LinkedListStack{
 
-    <span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Node top<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//栈顶结点</span>
+    private int size;
+    private Node top;//栈顶结点
 
-    <span class="token comment" spellcheck="true">//入栈</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        Node newNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>top<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>top <span class="token operator">=</span> newNode<span class="token punctuation">;</span>
-        <span class="token operator">++</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    //入栈
+    public void push(int value){
+        Node newNode = new Node(value, this.top);
+        this.top = newNode;
+        ++ this.size;
+    }
 
-    <span class="token comment" spellcheck="true">//出栈</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        Node popNode <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>top<span class="token punctuation">;</span>
+    //出栈
+    public int pop(){
+        Node popNode = this.top;
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>popNode <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//栈为空</span>
+        if (popNode == null) return null;//栈为空
 
-        <span class="token keyword">this</span><span class="token punctuation">.</span>top <span class="token operator">=</span> popNode<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        this.top = popNode.next;
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">--</span> <span class="token keyword">this</span><span class="token punctuation">.</span>size<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> popNode<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        if (this.size &gt; 0) -- this.size;
+        return popNode.getData();
+    }
 
-    <span class="token comment" spellcheck="true">//栈中的结点定义</span>
-    <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>
-        <span class="token keyword">private</span> <span class="token keyword">int</span> data<span class="token punctuation">;</span>
-        <span class="token keyword">private</span> Node next<span class="token punctuation">;</span>
+    //栈中的结点定义
+    class Node{
+        private int data;
+        private Node next;
 
-        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">,</span> Node next<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        public Node(int data, Node next){
+            this.data = data;
+            this.next = next;
+        }
 
-        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>data<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        public int getData(){
+            return this.data;
+        }
+    }
+}
+</code></pre>
 <p>还有的一些操作，比如求栈顶元素、遍历栈，你可以自己试着实现一下。</p>
 <h4 id="2-队列"><a href="#2-队列" class="headerlink" title="2.队列"></a>2.队列</h4><p>接下来再看看和栈很相似的另一种数据结构：队列。</p>
 <p>队列跟我们常说的排队很类似，比如我们在食堂排队打饭，排在前面的人先打到饭，排在后面的人后打到饭，这种具有先进先出特点的数据结构就叫做队列。跟栈类似，队列的操作也是受限的，插入元素即入队列只能在队列尾部进行，取出元素即出队列只能在队列头部进行。</p>
 <p><img src="https://roseduan.github.io/images/%E9%98%9F%E5%88%97.png" alt=""></p>
 <p>跟栈一样，队列也有两种实现方式，用数组实现的叫做顺序队列，用链表实现的叫做链式队列。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ArrayQueue</span> <span class="token punctuation">{</span>
+<pre><code class="java">public class ArrayQueue {
 
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//队列容量</span>
-    <span class="token comment" spellcheck="true">//队列头尾指针</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    private String[] data;
+    private int size;//队列容量
+    //队列头尾指针
+    private int head = 0;
+    private int tail = 0;
 
-    <span class="token keyword">public</span> <span class="token function">ArrayQueue</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span>capacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> capacity<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    public ArrayQueue(int capacity) {
+        this.data = new String[capacity];
+        this.size = capacity;
+    }
 
-    <span class="token comment" spellcheck="true">//入队列</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">enquque</span><span class="token punctuation">(</span>String value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">//尾指针和容量大小相同，说明队列尾部没有空间了</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>tail <span class="token operator">==</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>head <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果head == 0 &amp;&amp; tail == size，表示队列已满</span>
-            <span class="token comment" spellcheck="true">//数据搬移</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> head<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> tail<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                data<span class="token punctuation">[</span>i <span class="token operator">-</span> head<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//更新head和tail的值</span>
-            head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-            tail <span class="token operator">=</span> tail <span class="token operator">-</span> head<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        data<span class="token punctuation">[</span>tail<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
-        <span class="token operator">++</span> tail<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    //入队列
+    public boolean enquque(String value) {
+        //尾指针和容量大小相同，说明队列尾部没有空间了
+        if (tail == size) {
+            if(head == 0) return false;//如果head == 0 &amp;&amp; tail == size，表示队列已满
+            //数据搬移
+            for(int i = head; i &lt; tail; i ++) {
+                data[i - head] = data[i];
+            }
+            //更新head和tail的值
+            head = 0;
+            tail = tail - head;
+        }
+        data[tail] = value;
+        ++ tail;
+        return true;
+    }
 
-    <span class="token comment" spellcheck="true">//出队列</span>
-    <span class="token keyword">public</span> String <span class="token function">dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>head <span class="token operator">==</span> tail<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果head等于tail，表示队列为空</span>
+    //出队列
+    public String dequeue() {
+        if(head == tail) return null;//如果head等于tail，表示队列为空
 
-        String result <span class="token operator">=</span> data<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token operator">++</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        String result = data[head];
+        ++ head;
+        return result;
+    }
+}
+</code></pre>
 <p>上面是顺序队列的数组实现，可以看到，出队列的时间复杂度一直为O(1)。但是入队列的情况就有点不一样了，当队尾还有空间的时候，可直接入队列，时间复杂度还是O(1)，当队尾没有空间并且队头还有空间的时候，需要将数据搬移至队头，这时候的时间复杂度就为O(n)了。</p>
 <h4 id="3-循环队列"><a href="#3-循环队列" class="headerlink" title="3.循环队列"></a>3.循环队列</h4><p>普通的队列比较的简单，现在来看看队列的另一种形式：循环队列。</p>
 <p>像上面那种普通的队列，当队列尾部没有空间的时候，我们就需要进行数据搬移，这样消耗的时间比较的多，循环队列能够很方便的解决这个问题。</p>
@@ -581,37 +580,37 @@
 <p>如上图，当tail指针到达队列尾部的时候，我们不像普通队列那样进行数据搬移，而是直接将数据插入到0的位置，然后更新tail指针的位置。和普通队列一样，队列为空的判断条件还是head == tail，但是队列满的判断条件就不一样了，而是(tail + 1) % length = head。</p>
 <p><img src="https://roseduan.github.io/images/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E6%BB%A1.png" alt=""></p>
 <p>你可以根据上面的图来理解，可以发现队列满的时候，其实还有一个空间没用，所以循环队列实际上会浪费一个存储空间。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CircularQueue</span> <span class="token punctuation">{</span>
+<pre><code class="java">public class CircularQueue {
 
-    <span class="token keyword">private</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">//队列头尾指针</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> head <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> tail <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    private String[] data;
+    private int size;
+    //队列头尾指针
+    private int head = 0;
+    private int tail = 0;
 
-    <span class="token keyword">public</span> <span class="token function">CircularQueue</span><span class="token punctuation">(</span><span class="token keyword">int</span> capacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span>capacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>size <span class="token operator">=</span> capacity<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    public CircularQueue(int capacity) {
+        this.data = new String[capacity];
+        this.size = capacity;
+    }
 
-    <span class="token comment" spellcheck="true">//入队列</span>
-    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">enqueue</span><span class="token punctuation">(</span>String value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>tail <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> size <span class="token operator">==</span> head<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//队列已满</span>
-        data<span class="token punctuation">[</span>tail<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
-        tail <span class="token operator">=</span> <span class="token punctuation">(</span>tail <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> size<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    //入队列
+    public boolean enqueue(String value) {
+        if((tail + 1) % size == head) return false;//队列已满
+        data[tail] = value;
+        tail = (tail + 1) % size;
+        return true;
+    }
 
-    <span class="token comment" spellcheck="true">//出队列</span>
-    <span class="token keyword">public</span> String <span class="token function">dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>head <span class="token operator">==</span> tail<span class="token punctuation">)</span> <span class="token keyword">return</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//队列为空</span>
+    //出队列
+    public String dequeue() {
+        if(head == tail) return null;//队列为空
 
-        String result <span class="token operator">=</span> data<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        head <span class="token operator">=</span> <span class="token punctuation">(</span>head <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> size<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        String result = data[head];
+        head = (head + 1) % size;
+        return result;
+    }
+}
+</code></pre>
 
             </div>
             <hr>
@@ -781,7 +780,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="秋招以4个offer结束">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="秋招以4个offer结束">
                         
                         <span class="card-title">秋招以4个offer结束</span>
                     </div>
@@ -827,7 +826,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Java学习笔记2——类、继承、接口">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Java学习笔记2——类、继承、接口">
                         
                         <span class="card-title">Java学习笔记2——类、继承、接口</span>
                     </div>
@@ -908,7 +907,7 @@
             + '来源: roseduan<br />'
             + '作者: roseduan<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者roseduan所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);

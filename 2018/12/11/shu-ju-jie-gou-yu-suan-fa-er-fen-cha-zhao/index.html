@@ -28,8 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -286,7 +285,7 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -443,94 +442,94 @@
 <p><img src="https://roseduan.github.io/images/bucketSort/search.png" alt=""></p>
 <p>二分查找的时间复杂度是O(logn)，是一种非常高效的查找算法，即便是要查找的数据范围非常的大，例如2<sup>32</sup>（大约等于42亿），也能够在很短的时间内找到，最多只需要32次就能找到。</p>
 <p>二分查找的思路类似于分治思想，所以代码可以通过递归来完成，也可以用循环来实现。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BinarySearch</span> <span class="token punctuation">{</span>
+<pre><code class="java">public class BinarySearch {
 
-    <span class="token comment" spellcheck="true">//找到指定的数据的话，返回其下标，未找到则返回-1</span>
-    <span class="token comment" spellcheck="true">//======================1.使用循环实现=========================</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearchByCycle</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> high <span class="token operator">=</span> data<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    //找到指定的数据的话，返回其下标，未找到则返回-1
+    //======================1.使用循环实现=========================
+    public static int binarySearchByCycle(int[] data, int value) {
+        int low = 0;
+        int high = data.length - 1;
 
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> low <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>high <span class="token operator">-</span> low<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//相当于mid = (low + high) / 2</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> value<span class="token punctuation">)</span> <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> value<span class="token punctuation">)</span> low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        while (low &lt;= high) {
+            int mid = low + ((high - low) &gt;&gt; 1);//相当于mid = (low + high) / 2
+            if (data[mid] == value) return mid;
+            else if (data[mid] &lt; value) low = mid + 1;
+            else high = mid - 1;
+        }
+        return -1;
+    }
 
-    <span class="token comment" spellcheck="true">//========================2.使用递归实现=========================</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">binarySearchByRecursion</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token function">searchInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    //========================2.使用递归实现=========================
+    public static int binarySearchByRecursion(int[] data, int value) {
+        return searchInternally(data, 0, data.length - 1, value);
+    }
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">searchInternally</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> low<span class="token punctuation">,</span> <span class="token keyword">int</span> high<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>low <span class="token operator">></span> high<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    private static int searchInternally(int[] data, int low, int high, int value) {
+        if(low &gt; high) return -1;
 
-        <span class="token keyword">int</span> mid <span class="token operator">=</span> low <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>high <span class="token operator">-</span> low<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> value<span class="token punctuation">)</span> <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> value<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">searchInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> high<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token function">searchInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> low<span class="token punctuation">,</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        int mid = low + ((high - low) &gt;&gt; 1);
+        if(data[mid] == value) return mid;
+        else if(data[mid] &lt; value) return searchInternally(data, mid + 1, high, value);
+        else return searchInternally(data, low, mid - 1, value);
+    }
+}
+</code></pre>
 <h4 id="2-二分查找的局限性"><a href="#2-二分查找的局限性" class="headerlink" title="2.二分查找的局限性"></a>2.二分查找的局限性</h4><p>二分查找实际上是存在很大的局限性的，首先，它必须要求数据存储在顺序表这种结构之上，就像数组，可以支持按下标访问元素。如果是链表这种结构的话，不支持随机访问元素，只能遍历查找，这样应用二分查找的话时间复杂度就会很高了。</p>
 <p>其次，数据必须是有序的，假如数据是无序的话，我们就要对其进行排序，前面说到，一般采用的排序算法时间复杂度至少是O(nlogn)。所以，如果对频繁进行插入和删除的数据进行查找的话，维护有序的成本就会比较高。</p>
 <p>最后，二分查找不适用于数据规模太小的情况，例如只有10个、20个数据等，直接使用遍历查找即可。数据量较大时才能体现出二分查找的优势。</p>
 <h4 id="3-变形的二分查找问题"><a href="#3-变形的二分查找问题" class="headerlink" title="3.变形的二分查找问题"></a>3.变形的二分查找问题</h4><p>上面实现的二分查找算法是不是不难？其实那是针对的最简单的一种二分查找，数据是有序、并且无重复的，但是，如果是针对一些变形的二分查找，实现起来就没那么简单了。接下来看看几种常见的二分查找的变形问题。</p>
 <p><strong>1.查找第一个值等于给定值</strong></p>
 <p>假如有一个数组data[1,3,5,5,5,7,8,10,12]，现在我们要找第一个等于5的值，该怎么实现呢？假如用上面实现的普通二分查找，取中间值data[4]=5，刚好等于要查找的值5，所以程序就返回下标4。但是很明显不正确，因为我们要找的是第一个5，下标为2，那应该怎么实现呢？先来看看代码吧：</p>
-<pre class="line-numbers language-java"><code class="language-java">
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="java">
+</code></pre>
 <p>可以看到，当data[mid]大于或者小于value的时候，和普通的二分查找不变，更新high或者low的值。但是，当data[mid] == value的时候，我们需要进行判断，第一种情况：如果mid等于0，表示这是数组的第一个元素，那肯定是我们要找的了，所以返回mid；第二种情况：如果data[mid]前面一个元素不等于value，那么data[mid]肯定就是第一个等于value的值了，所以返回mid。</p>
 <p><strong>2.查找最后一个值等于给定值</strong></p>
 <p>这个问题和上面的问题其实很相似，我这里直接给出代码，你结合看看就能够理解了：</p>
-<pre class="line-numbers language-java"><code class="language-java">    <span class="token comment" spellcheck="true">//查找最后一个值等于给定值</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">findLastTarget</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> length <span class="token operator">=</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+<pre><code class="java">    //查找最后一个值等于给定值
+    public static int findLastTarget(int[] data, int value) {
+        int length = data.length;
 
-        <span class="token keyword">int</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> high <span class="token operator">=</span> length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        int low = 0;
+        int high = length - 1;
 
-        <span class="token keyword">while</span><span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> low <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>high <span class="token operator">-</span> low<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> value<span class="token punctuation">)</span> high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> value<span class="token punctuation">)</span> low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>mid <span class="token operator">==</span> length <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">||</span> data<span class="token punctuation">[</span>mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> value<span class="token punctuation">)</span> <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-                <span class="token keyword">else</span> low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        while(low &lt;= high) {
+            int mid = low + ((high - low) &gt;&gt; 1);
+            if(data[mid] &gt; value) high = mid - 1;
+            else if(data[mid] &lt; value) low = mid + 1;
+            else {
+                if(mid == length - 1 || data[mid + 1] != value) return mid;
+                else low = mid + 1;
+            }
+        }
+        return -1;
+    }
+</code></pre>
 <p>重点就在于data[mid] == value的时候的判断，假如mid是数组的最后一个元素，或者mid前面那个元素不等于valaue，那么mid就是我们要查找的值下标。</p>
 <p><strong>3.查找第一个大于等于给定值</strong></p>
 <p>例如一个数组data[1,3,5,5,5,8,8,8,10,12]，我们要查找第一个大于等于7的值，就是下标为5的值8，应该怎么做呢？实际上实现的思路和上面的两种问题类似，代码其实还更简洁：</p>
-<pre class="line-numbers language-java"><code class="language-java">
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="java">
+</code></pre>
 <p>当data[mid]小于value的时候，正常更新low的值；当data[mid]大于等于value的时候，需要进行判断，如果mid是数组的第一个值，那么肯定就是要找的了，如果mid前面的那个值小于value，说明mid这个值就是第一个大于等于value的值，所以直接返回。否则的话，就更新high的值。</p>
 <p><strong>4.查找最后一个小于等于给定值</strong></p>
 <p>有了上面三种变形问题，其实这就很简单了，我直接给出代码，你可以结合理解一下：</p>
-<pre class="line-numbers language-java"><code class="language-java">    <span class="token comment" spellcheck="true">//查找最后一个小于等于给定值</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">findLastSmallerThanTarget</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> length <span class="token operator">=</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+<pre><code class="java">    //查找最后一个小于等于给定值
+    public static int findLastSmallerThanTarget(int[] data, int value) {
+        int length = data.length;
 
-        <span class="token keyword">int</span> low <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> high <span class="token operator">=</span> length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        int low = 0;
+        int high = length - 1;
 
-        <span class="token keyword">while</span><span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> mid <span class="token operator">=</span> low <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>high <span class="token operator">-</span> low<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">></span> value<span class="token punctuation">)</span> high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span>mid <span class="token operator">==</span> length <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">||</span> data<span class="token punctuation">[</span>mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> value<span class="token punctuation">)</span> <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
-                <span class="token keyword">else</span> low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        while(low &lt;= high) {
+            int mid = low + ((high - low) &gt;&gt; 1);
+            if(data[mid] &gt; value) high = mid - 1;
+            else {
+                if(mid == length - 1 || data[mid + 1] &gt; value) return mid;
+                else low = mid + 1;
+            }
+        }
+        return -1;
+    }
+</code></pre>
 
             </div>
             <hr>
@@ -700,7 +699,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Java学习笔记4——集合">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Java学习笔记4——集合">
                         
                         <span class="card-title">Java学习笔记4——集合</span>
                     </div>
@@ -822,7 +821,7 @@ exception分为RuntimeExcep</div>
             + '来源: roseduan<br />'
             + '作者: roseduan<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者roseduan所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);

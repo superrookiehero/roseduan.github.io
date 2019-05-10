@@ -28,8 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -286,7 +285,7 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -443,40 +442,40 @@
 <p>我们常取的原始增量为数据的大小/2，例如数据大小为length，我们将其分为leng / 2个组，然后length = length / 2，继续分下去，直到length = 1。文字看起来比较抽象，我画了图来帮助你理解：</p>
 <p><img src="https://roseduan.github.io/images/%E5%B8%8C%E5%B0%942.png" alt=""></p>
 <p>下面是它的代码实现：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre><code class="java">/**
  * @ClassName ShellSort
  * @Description 希尔排序算法
  * @Author roseduan
  * @Date 2018/11/30 22:30
  * @Version 1.0
- **/</span>
+ **/
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShellSort</span> <span class="token punctuation">{</span>
+public class ShellSort {
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">shellSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> length <span class="token operator">=</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>length <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
+    public static void shellSort(int[] data) {
+        int length = data.length;
+        if(length &lt;= 1) return ;
 
-        <span class="token comment" spellcheck="true">//定义增量</span>
-        <span class="token keyword">int</span> step <span class="token operator">=</span> length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        //定义增量
+        int step = length / 2;
 
-        <span class="token keyword">while</span><span class="token punctuation">(</span>step <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> step<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> length<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">int</span> value <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                <span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">-</span> step<span class="token punctuation">;</span>
+        while(step &gt;= 1) {
+            for(int i = step; i &lt; length; i ++) {
+                int value = data[i];
+                int j = i - step;
 
-                <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">;</span> j <span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">-=</span> step<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    <span class="token keyword">if</span><span class="token punctuation">(</span>value <span class="token operator">&lt;</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> data<span class="token punctuation">[</span>j <span class="token operator">+</span> step<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                    <span class="token keyword">else</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                data<span class="token punctuation">[</span>j <span class="token operator">+</span> step<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token comment" spellcheck="true">//增量缩小</span>
-            step <span class="token operator">=</span> step <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                for(; j &gt;=0; j -= step) {
+                    if(value &lt; data[j]) data[j + step] = data[j];
+                    else break;
+                }
+                data[j + step] = value;
+            }
+            //增量缩小
+            step = step / 2;
+        }
+    }
+}
+</code></pre>
 <p>很遗憾，希尔排序虽然时间复杂度为O(nlogn)，但它是一种不稳定的算法，因为分组的时候可能会错开相同的元素，分组进行插入排序的时候，元素的位置交换之后，稳定性就被破坏了。比起归并排序，它是不稳定的，比起快速排序，它的执行效率稍慢，所以希尔排序并没有应用得很广泛。</p>
 <h4 id="3-归并排序"><a href="#3-归并排序" class="headerlink" title="3.归并排序"></a>3.归并排序</h4><p>归并排序的思路是这样的：将排序的数据分为若干子数组，子数组排序之后，再进行合并，这样要排序的数组就能排好了。这种思想叫做分治，就是将一个大的问题分解成很多小问题，将小问题就解决了，大的问题也就解决了。用分治思想解决的问题，一般都可以用递归这种编程技巧来表示。</p>
 <p><img src="https://roseduan.github.io/images/%E5%BD%92%E5%B9%B6.png" alt=""></p>
@@ -485,119 +484,119 @@
 <p>merge函数表示将两个子数组进行合并。那么merge函数该怎么表示呢？</p>
 <p>思路是这样的：首先我们新建一个临时数组temp，大小和原始数组相同。然后使用两个指针i，j分别指向两个子数组的第一个元素，如果i所指元素 &lt; j所指元素，则将i所指元素插入temp，i向前移动；反之将j所指元素插入，j向前移动。以此类推，直到比较完成，然后将临时数组temp复制到原始数组中。</p>
 <p>归并排序的代码是这样的：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre><code class="java">/**
  * @ClassName MergeSort
  * @Description 归并排序算法
  * @Author Rose_Duan
  * @Date 2018/12/1 15:41
  * @Version 1.0
- **/</span>
+ **/
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MergeSort</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">mergeSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">mergeInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+public class MergeSort {
+    public static void mergeSort(int[] data, int n){
+        mergeInternally(data, 0, n - 1);
+    }
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">mergeInternally</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">>=</span> r<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    private static void mergeInternally(int[] data, int p, int r){
+        if (p &gt;= r) return;
 
-        <span class="token comment" spellcheck="true">//计算p到r的中间值q</span>
-        <span class="token comment" spellcheck="true">// 此等式相当于int q = (p + r) / 2，只不过下面这样写效率更高</span>
-        <span class="token keyword">int</span> q <span class="token operator">=</span> p <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>r <span class="token operator">-</span> p<span class="token punctuation">)</span> <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //计算p到r的中间值q
+        // 此等式相当于int q = (p + r) / 2，只不过下面这样写效率更高
+        int q = p + ((r - p) &gt;&gt; 1);
 
-        <span class="token comment" spellcheck="true">//递归</span>
-        <span class="token comment" spellcheck="true">//data[p  r]分为data[p   q]和data[q+1   r]</span>
-        <span class="token function">mergeInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">mergeInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> q <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //递归
+        //data[p  r]分为data[p   q]和data[q+1   r]
+        mergeInternally(data, p, q);
+        mergeInternally(data, q + 1, r);
 
-        <span class="token comment" spellcheck="true">//合并</span>
-        <span class="token function">merge</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        //合并
+        merge(data, p, q, r);
+    }
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">merge</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> q<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> i <span class="token operator">=</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> j <span class="token operator">=</span> q <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    private static void merge(int[] data, int p, int q, int r){
+        int i = p;
+        int j = q + 1;
+        int k = 0;
 
-        <span class="token comment" spellcheck="true">//新建一个临时数组，大小与data[p……r]一样</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> temp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>r <span class="token operator">-</span> p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        //新建一个临时数组，大小与data[p……r]一样
+        int[] temp = new int[r - p + 1];
 
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;=</span> q <span class="token operator">&amp;&amp;</span> j <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> temp<span class="token punctuation">[</span>k <span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">else</span> temp<span class="token punctuation">[</span>k <span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>j <span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        while (i &lt;= q &amp;&amp; j &lt;= r){
+            if (data[i] &lt;= data[j]) temp[k ++] = data[i ++];
+            else temp[k ++] = data[j ++];
+        }
 
-        <span class="token comment" spellcheck="true">//判断哪个子数组中有剩余的数据</span>
-        <span class="token comment" spellcheck="true">//首先假设data[p....q]中有剩余的数据</span>
-        <span class="token keyword">int</span> start <span class="token operator">=</span> i<span class="token punctuation">;</span>
-        <span class="token keyword">int</span> end <span class="token operator">=</span> q<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//如果j小于等于r，则说明data[q+1...r]中有剩余的数据</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">&lt;=</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            start <span class="token operator">=</span> j<span class="token punctuation">;</span>
-            end <span class="token operator">=</span> r<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//将剩余的元素拷贝到temp中</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>start <span class="token operator">&lt;=</span> end<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            temp<span class="token punctuation">[</span>k <span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>start <span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        //判断哪个子数组中有剩余的数据
+        //首先假设data[p....q]中有剩余的数据
+        int start = i;
+        int end = q;
+        //如果j小于等于r，则说明data[q+1...r]中有剩余的数据
+        if (j &lt;= r){
+            start = j;
+            end = r;
+        }
+        //将剩余的元素拷贝到temp中
+        while (start &lt;= end){
+            temp[k ++] = data[start ++];
+        }
 
-        <span class="token comment" spellcheck="true">//最后，将临时数组中的数据拷贝到data中</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> r <span class="token operator">-</span> p<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            data<span class="token punctuation">[</span>p <span class="token operator">+</span> i<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        //最后，将临时数组中的数据拷贝到data中
+        for(i = 0; i &lt;= r - p; i ++){
+            data[p + i] = temp[i];
+        }
+    }
+}
+</code></pre>
 <p>归并排序并不是一种原地排序算法，因为很明显，我们申请了一个临时数组来保存数据，这个临时数组最大不会超过原始数组，所以空间复杂度为O(n)。归并排序的时间复杂度是O(nlogn)，并且是一种稳定的排序算法。</p>
 <h4 id="4-快速排序"><a href="#4-快速排序" class="headerlink" title="4.快速排序"></a>4.快速排序</h4><p>快速排序简称“快排”，它的思路和归并排序很类似，都是利用的分治思想。首先选取任意一个数据作为分区点，比分区点小的数据放在其左边，大的放在右边。</p>
 <p><img src="https://roseduan.github.io/images/%E5%BF%AB%E9%80%9F.png" alt=""></p>
 <p>这样数组就分为了三个部分，一是分区点q，然后对p——q-1和q+1——r的数据分别再执行上图操作，这样整个数据就有序了。</p>
 <p>归并排序当中有个merge合并函数，这里我们需要一个partition分区函数，主要的功能是实现上图的操作，将小于分区点的数据放在其左边，大于分区点的放在其右边，然后返回分区点。具体要怎么实现呢？这里用到的思路比较的巧妙：对于一个数组data[p….r]，我们选区最后一个元素data[r- 1]为分区点(也就是data[pivot])，然后用两个指针i，j指向第一个元素，如果data[j] &lt; data[pivot]，那么就互换i和j所指向的元素，然后i，j向前移动。如果data[j] &gt;= data[pivot]，那么不用交换位置，i不移动，j继续移动。</p>
 <p>结合代码看一下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre><code class="java">/**
  * @ClassName QuickSort
  * @Description 快速排序算法
  * @Author Rose_Duan
  * @Date 2018/11/14 13:44
  * @Version 1.0
- **/</span>
+ **/
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QuickSort</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">quickSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token function">quickSortInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+public class QuickSort {
+    public static void quickSort(int[] data, int n){
+        quickSortInternally(data, 0, n - 1);
+    }
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">quickSortInternally</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> p <span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">>=</span> r<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    private static void quickSortInternally(int[] data, int p , int r){
+        if (p &gt;= r) return;
 
-        <span class="token keyword">int</span> q <span class="token operator">=</span> <span class="token function">partition</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> p<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//获取分区点</span>
+        int q = partition(data, p, r);//获取分区点
 
-        <span class="token comment" spellcheck="true">//递归</span>
-        <span class="token function">quickSortInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">quickSortInternally</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> q <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        //递归
+        quickSortInternally(data, p, q - 1);
+        quickSortInternally(data, q + 1, r);
+    }
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">partition</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">,</span> <span class="token keyword">int</span> p<span class="token punctuation">,</span> <span class="token keyword">int</span> r<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> pivot <span class="token operator">=</span> data<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> i <span class="token operator">=</span> p<span class="token punctuation">;</span>
+    private static int partition(int[] data, int p, int r){
+        int pivot = data[r];
+        int i = p;
 
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> p<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> r<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> pivot<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">int</span> temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-                data<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-                i <span class="token operator">++</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+        for (int j = p; j &lt; r; j++) {
+            if (data[j] &lt; pivot){
+                int temp = data[i];
+                data[i] = data[j];
+                data[j] = temp;
+                i ++;
+            }
+        }
 
-        <span class="token keyword">int</span> temp <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        data<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+        int temp = data[i];
+        data[i] = data[r];
+        data[r] = temp;
 
-        <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        return i;
+    }
+}
+</code></pre>
 <p>很明显，在partition分区函数中，我们交换了元素的顺序，这样值相同的元素的前后顺序可能会被打乱，你可以结合我前面对partition函数的描述在看一下，所以快速排序是不稳定的。快速排序的平均时间复杂度是O(nlogn)，并且是一种原地排序算法，空间复杂度是O(1)。</p>
 
             </div>
@@ -768,7 +767,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Java学习笔记1——基本程序设计结构">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Java学习笔记1——基本程序设计结构">
                         
                         <span class="card-title">Java学习笔记1——基本程序设计结构</span>
                     </div>
@@ -821,7 +820,7 @@ public class HelloWorld {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="中国的大学都是这样应对评估的吗？">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="中国的大学都是这样应对评估的吗？">
                         
                         <span class="card-title">中国的大学都是这样应对评估的吗？</span>
                     </div>
@@ -892,7 +891,7 @@ public class HelloWorld {
             + '来源: roseduan<br />'
             + '作者: roseduan<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者roseduan所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);

@@ -29,8 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -287,7 +286,7 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -449,52 +448,52 @@
 <p>结合上面的图就不难理解了，单链表可以在O(1)时间复杂度内添加和删除元素，这比数组就更加有优势了。</p>
 <p>但是有一个问题，要是我们查找一个元素呢？非常不幸，只能从链表的头结点开始遍历，然后找到元素，这样时间复杂度就为O(n)了。</p>
 <p>这里我给出了单链表的查找和删除结点的代码，你可以结合代码来理解一下，然后动手写写其他的单链表操作。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SingleLinkedList</span> <span class="token punctuation">{</span>
+<pre><code class="java">public class SingleLinkedList {
 
-    <span class="token keyword">private</span> Node head <span class="token operator">=</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//定义头结点</span>
+    private Node head = null;//定义头结点
 
-    <span class="token comment" spellcheck="true">//1.根据值查找结点</span>
-    <span class="token keyword">public</span> Node <span class="token function">getNodeByValue</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Node p <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> p<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            p <span class="token operator">=</span> p<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+    //1.根据值查找结点
+    public Node getNodeByValue(int value) {
+        Node p = head;
+        while (p != null &amp;&amp; p.getData() != value) {
+            p = p.next;
+        }
+        return p;
+    }
 
-    <span class="token comment" spellcheck="true">//2.删除值等于给定值的结点</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteByValue</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    //2.删除值等于给定值的结点
+    public void deleteByValue(int value) {
+        if (head == null) return;
 
-        Node p <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        Node pBefore <span class="token operator">=</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//用pBefore表示p前面一个结点</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> p<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            pBefore <span class="token operator">=</span> p<span class="token punctuation">;</span>
-            p <span class="token operator">=</span> p<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        Node p = head;
+        Node pBefore = null;//用pBefore表示p前面一个结点
+        while (p != null &amp;&amp; p.getData() != value) {
+            pBefore = p;
+            p = p.next;
+        }
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//说明没有找到结点</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>pBefore <span class="token operator">==</span> null<span class="token punctuation">)</span> head <span class="token operator">=</span> head<span class="token punctuation">.</span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//说明删除的结点是头结点</span>
-        <span class="token keyword">else</span> pBefore<span class="token punctuation">.</span>next <span class="token operator">=</span> pBefore<span class="token punctuation">.</span>next<span class="token punctuation">.</span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//否则将pBefore的指针指向p的后一个结点，即删除p</span>
-    <span class="token punctuation">}</span>
+        if (p == null) return;//说明没有找到结点
+        if(pBefore == null) head = head.next;//说明删除的结点是头结点
+        else pBefore.next = pBefore.next.next;//否则将pBefore的指针指向p的后一个结点，即删除p
+    }
 
-    <span class="token comment" spellcheck="true">//定义链表结点</span>
-    <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>
-        <span class="token keyword">private</span> <span class="token keyword">int</span> data<span class="token punctuation">;</span>
-        <span class="token keyword">private</span> Node next<span class="token punctuation">;</span>
+    //定义链表结点
+    class Node{
+        private int data;
+        private Node next;
 
 
-        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">,</span> Node next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        public Node(int data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
 
-        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> data<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        public int getData() {
+            return data;
+        }
+    }
+}
+</code></pre>
 <h4 id="3-循环链表"><a href="#3-循环链表" class="headerlink" title="3.循环链表"></a>3.循环链表</h4><p>循环链表其实与单链表的唯一区别就是，循环链表的尾结点指针指向了头结点，这样就形成了一个循环的结构，用来解决某些具有环形特点的问题。</p>
 <p><img src="http://roseduan.github.io/images/linkedlist/4.png" alt=""></p>
 <h4 id="4-双向链表"><a href="#4-双向链表" class="headerlink" title="4.双向链表"></a>4.双向链表</h4><p>我们重点来看一下双向链表，其实根据名字就能够猜个大概了，双向链表和单链表的区别就是：一个结点有两个指针，一个指针指向前面的结点，一个指针指向后面的结点。</p>
@@ -503,128 +502,128 @@
 <p>但是在双向链表中就没有这个查找过程，因为每个节点自身保存了指向前驱结点的指针，这样就很方便的找到了前驱结点，然后在进行删除操作，整个时间复杂度是O(1)。</p>
 <p>这里体现出来的思想，即利用更多的空间来换取时间上的更快的执行效率，就称为以空间换时间，反之就是以时间换空间。</p>
 <p>这里我给出了双向链表的简单的插入和删除的方法，你可以参考，然后是实现其他的功能。</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+<pre><code class="java">/**
  * @ClassName DoubleLinkedList
  * @Description 双向链表的实现
  * @Author Rose_Duan
  * @Date 2018/12/5 16:04
  * @Version 1.0
- **/</span>
+ **/
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DoubleLinkedList</span> <span class="token punctuation">{</span>
+public class DoubleLinkedList {
 
-    <span class="token keyword">private</span> Node head <span class="token operator">=</span> null<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//链表的头结点</span>
+    private Node head = null;//链表的头结点
 
-    <span class="token comment" spellcheck="true">//查找含有某值的结点</span>
-    <span class="token keyword">public</span> Node <span class="token function">getNodeByValue</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        Node p <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> p<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> value<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    //查找含有某值的结点
+    public Node getNodeByValue(int value){
+        Node p = head;
+        while (p != null &amp;&amp; p.getData() != value) p = p.next;
 
-        <span class="token keyword">return</span> p<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        return p;
+    }
 
-    <span class="token comment" spellcheck="true">//1.在链表末尾插入结点，常规插入</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        Node node <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            head <span class="token operator">=</span> node<span class="token punctuation">;</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    //1.在链表末尾插入结点，常规插入
+    public void insert(int value){
+        Node node = new Node(value);
+        if (head == null){
+            head = node;
+            return;
+        }
 
-        Node p <span class="token operator">=</span> head<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token punctuation">.</span>next <span class="token operator">!=</span> null<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+        Node p = head;
+        while (p.next != null) p = p.next;
 
-        p<span class="token punctuation">.</span>next <span class="token operator">=</span> node<span class="token punctuation">;</span>
-        node<span class="token punctuation">.</span>prev <span class="token operator">=</span> p<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+        p.next = node;
+        node.prev = p;
+    }
 
-    <span class="token comment" spellcheck="true">//2.在结点之前插入含有某值的结点</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertBefore</span><span class="token punctuation">(</span>Node p<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null <span class="token operator">||</span> p <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    //2.在结点之前插入含有某值的结点
+    public void insertBefore(Node p, int value){
+        if (head == null || p == null) return;
 
-        Node node <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Node</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Node node = new Node(value);
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token punctuation">.</span>prev <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//说明是在头结点的前面插入</span>
-            node<span class="token punctuation">.</span>next <span class="token operator">=</span> head<span class="token punctuation">;</span>
-            head<span class="token punctuation">.</span>prev <span class="token operator">=</span> node<span class="token punctuation">;</span>
-            head <span class="token operator">=</span> node<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            Node pBefore <span class="token operator">=</span> p<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
-            pBefore<span class="token punctuation">.</span>next <span class="token operator">=</span> node<span class="token punctuation">;</span>
-            node<span class="token punctuation">.</span>prev <span class="token operator">=</span> pBefore<span class="token punctuation">;</span>
+        if (p.prev == null){//说明是在头结点的前面插入
+            node.next = head;
+            head.prev = node;
+            head = node;
+        }
+        else {
+            Node pBefore = p.prev;
+            pBefore.next = node;
+            node.prev = pBefore;
 
-            node<span class="token punctuation">.</span>next <span class="token operator">=</span> p<span class="token punctuation">;</span>
-            p<span class="token punctuation">.</span>prev <span class="token operator">=</span> node<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+            node.next = p;
+            p.prev = node;
+        }
+    }
 
-    <span class="token comment" spellcheck="true">//3.删除某结点之前的结点</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteBefore</span><span class="token punctuation">(</span>Node p<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null <span class="token operator">||</span> p <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    //3.删除某结点之前的结点
+    public void deleteBefore(Node p){
+        if (head == null || p == null) return;
 
-        Node delete <span class="token operator">=</span> p<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
-        Node deleteBefore <span class="token operator">=</span> delete<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
+        Node delete = p.prev;
+        Node deleteBefore = delete.prev;
 
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>deleteBefore <span class="token operator">==</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//删除的是头结点</span>
-            head <span class="token operator">=</span> p<span class="token punctuation">;</span>
-            head<span class="token punctuation">.</span>prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
-            delete<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            deleteBefore<span class="token punctuation">.</span>next <span class="token operator">=</span> delete<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            p<span class="token punctuation">.</span>prev <span class="token operator">=</span> delete<span class="token punctuation">.</span>prev<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        if (deleteBefore == null){//删除的是头结点
+            head = p;
+            head.prev = null;
+            delete.next = null;
+        }
+        else {
+            deleteBefore.next = delete.next;
+            p.prev = delete.prev;
+        }
+    }
 
-    <span class="token comment" spellcheck="true">//打印链表中的所有数据</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">printAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>head <span class="token operator">==</span> null<span class="token punctuation">)</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"链表为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            Node p <span class="token operator">=</span> head<span class="token punctuation">;</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"   "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                p <span class="token operator">=</span> p<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+    //打印链表中的所有数据
+    public void printAll(){
+        if (head == null) System.out.println(&quot;链表为空&quot;);
+        else {
+            Node p = head;
+            while (p != null){
+                System.out.print(p.getData() + &quot;   &quot;);
+                p = p.next;
+            }
+        }
+    }
 
-    <span class="token comment" spellcheck="true">//链表结点定义</span>
-    <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>
-        <span class="token keyword">private</span> <span class="token keyword">int</span> data<span class="token punctuation">;</span>
-        <span class="token keyword">private</span> Node prev<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//前驱指针</span>
-        <span class="token keyword">private</span>  Node next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//后继指针</span>
+    //链表结点定义
+    class Node{
+        private int data;
+        private Node prev;//前驱指针
+        private  Node next;//后继指针
 
-        <span class="token keyword">public</span> <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>data <span class="token operator">=</span> data<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
-            <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        public Node(int data) {
+            this.data = data;
+            this.prev = null;
+            this.next = null;
+        }
 
-        <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">return</span> data<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        public int getData() {
+            return data;
+        }
+    }
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        DoubleLinkedList linkedList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DoubleLinkedList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        linkedList<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        linkedList<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        linkedList<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        linkedList<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    public static void main(String[] args) {
+        DoubleLinkedList linkedList = new DoubleLinkedList();
+        linkedList.insert(10);
+        linkedList.insert(12);
+        linkedList.insert(13);
+        linkedList.insert(20);
 
-        Node node <span class="token operator">=</span> linkedList<span class="token punctuation">.</span><span class="token function">getNodeByValue</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Node node = linkedList.getNodeByValue(12);
 
-        linkedList<span class="token punctuation">.</span><span class="token function">deleteBefore</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        linkedList.deleteBefore(node);
 
-        Node head <span class="token operator">=</span> linkedList<span class="token punctuation">.</span>head<span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>head<span class="token punctuation">.</span>prev<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>head<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Node head = linkedList.head;
+        System.out.println(head.prev);
+        System.out.println(head.getData());
 
-        linkedList<span class="token punctuation">.</span><span class="token function">printAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        linkedList.printAll();
+    }
+}
+</code></pre>
 
             </div>
             <hr>
@@ -794,7 +793,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Java学习笔记2——类、继承、接口">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Java学习笔记2——类、继承、接口">
                         
                         <span class="card-title">Java学习笔记2——类、继承、接口</span>
                     </div>
@@ -850,7 +849,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Java学习笔记1——基本程序设计结构">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Java学习笔记1——基本程序设计结构">
                         
                         <span class="card-title">Java学习笔记1——基本程序设计结构</span>
                     </div>
@@ -928,7 +927,7 @@ public class HelloWorld {
             + '来源: roseduan<br />'
             + '作者: roseduan<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者roseduan所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);

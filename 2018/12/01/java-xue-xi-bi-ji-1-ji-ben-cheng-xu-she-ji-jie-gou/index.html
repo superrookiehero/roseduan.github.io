@@ -36,8 +36,7 @@ public class HelloWorld {
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -294,7 +293,7 @@ public class HelloWorld {
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,7 +422,7 @@ public class HelloWorld {
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        967
+                        969
                     </div>
                     
 
@@ -447,17 +446,17 @@ public class HelloWorld {
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p><strong>1.Java程序示例</strong></p>
-<pre class="line-numbers language-Java"><code class="language-Java">/*
+<pre><code class="Java">/*
   多行注释
   多行注释
 */
 public class HelloWorld {
     //单行注释
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println(&quot;Hello World!&quot;);
     }
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>1.Java对大小写敏感</p>
 <p>2.Java类的命名规范：首字母大写的名词，如果由多个单词组成，则每个单词的首字母都应该大写，称为驼峰式命名。</p>
 <p>3.源代码的文件名必须与公共类的名字相同，并用.java作为扩展名。</p>
@@ -513,12 +512,12 @@ public class HelloWorld {
 <p>2.创建一个数字数组时，所有的元素都会初始化为0，boolean数组的元素会初始化为false，对象数组的元素会初始化为null。</p>
 <p>3.有一个更简单的方法打印数组中的所有值：Arrays.toString()</p>
 <p>4.数组拷贝的两种方法：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> num <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> data<span class="token punctuation">.</span>length <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre><code class="java">int[] data = {1,2,3,4,5};
+int[] num = Arrays.copyOf(data, data.length * 2);
 
-<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> rose <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-System<span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> rose<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+int[] rose = new int[10];
+System.arraycopy(data, 0, rose, 0, data.length);
+</code></pre>
 <p>5.数组排序：Arrays.sort()，此方法采用的是快速排序实现。</p>
 
             </div>
@@ -689,7 +688,7 @@ System<span class="token punctuation">.</span><span class="token function">array
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="数据结构与算法——链表">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="数据结构与算法——链表">
                         
                         <span class="card-title">数据结构与算法——链表</span>
                     </div>
@@ -735,7 +734,7 @@ System<span class="token punctuation">.</span><span class="token function">array
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="数据结构与算法——排序（三）">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="数据结构与算法——排序（三）">
                         
                         <span class="card-title">数据结构与算法——排序（三）</span>
                     </div>
@@ -805,7 +804,7 @@ System<span class="token punctuation">.</span><span class="token function">array
             + '来源: roseduan<br />'
             + '作者: roseduan<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者roseduan所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);

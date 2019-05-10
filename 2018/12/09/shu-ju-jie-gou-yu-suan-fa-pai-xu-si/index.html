@@ -29,8 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -287,7 +286,7 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,7 +422,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -444,97 +443,97 @@
 <p><img src="https://roseduan.github.io/images/bucketSort/%E6%A1%B6%E6%8E%92%E5%BA%8F.png" alt=""></p>
 <p>桶排序的时间复杂度可以达到O(n)，但是它对数据的要求十分的苛刻，首先数据在每个子范围必须是差不多的，不能出现有些桶的数据非常的多，而有些桶的数据又十分的少的情况。在极端情况下，假如全部的数据都在一个桶内的话，时间复杂度会退化为O(nlogn)了。</p>
 <p>这里我模仿了一个桶排序，要排序的数据的范围在0-999之间，然后用链表初始化10个桶，每个桶存储的数据范围为：[0-99]、[100-199]、[200-299]、……、[900-999]。代码如下：</p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BucketSort</span> <span class="token punctuation">{</span>
+<pre><code class="java">public class BucketSort {
 
-    <span class="token comment" spellcheck="true">//模拟一个桶排序，data中的数据在0-1000之间</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">bucketSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    //模拟一个桶排序，data中的数据在0-1000之间
+    public static void bucketSort(int[] data) {
+        int index = 0;
 
-        <span class="token comment" spellcheck="true">//使用链表模拟桶，新建10个桶</span>
-        ArrayList<span class="token operator">&lt;</span>LinkedList<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> buckets <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//初始化桶</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            buckets<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        //使用链表模拟桶，新建10个桶
+        ArrayList&lt;LinkedList&lt;Integer&gt;&gt; buckets = new ArrayList&lt;&gt;();
+        //初始化桶
+        for(int i = 0; i &lt; 10; i ++) {
+            buckets.add(new LinkedList&lt;&gt;());
+        }
 
-        <span class="token comment" spellcheck="true">//扫描数据，将其放入桶内</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> bucketNum <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">/</span> <span class="token number">100</span><span class="token punctuation">;</span>
-            buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>bucketNum<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        //扫描数据，将其放入桶内
+        for(int i = 0; i &lt; data.length; i ++) {
+            int bucketNum = data[i] / 100;
+            buckets.get(bucketNum).add(data[i]);
+        }
 
-        <span class="token comment" spellcheck="true">//将桶内的数据进行排序</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">//使用Collections.sort()方法将桶内数据排序</span>
-            Collections<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        //将桶内的数据进行排序
+        for(int i = 0; i &lt; 10; i ++) {
+            //使用Collections.sort()方法将桶内数据排序
+            Collections.sort(buckets.get(i));
 
-            <span class="token comment" spellcheck="true">//排序之后，将数据拷贝到data中</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                data<span class="token punctuation">[</span>index <span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+            //排序之后，将数据拷贝到data中
+            for(int j = 0; j &lt; buckets.get(i).size(); j ++) {
+                data[index ++] = buckets.get(i).get(j);
+            }
+        }
+    }
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// TODO Auto-generated method stub</span>
-        Random random <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">1000</span><span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    
-        <span class="token punctuation">}</span>
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        Random random = new Random();
+        int[] data = new int[1000];
+        for(int i = 0; i &lt; 1000; i ++) {
+            data[i] = random.nextInt(1000);    
+        }
 
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"排序之前："</span> <span class="token operator">+</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println(&quot;排序之前：&quot; + Arrays.toString(data));
 
-        BucketSort<span class="token punctuation">.</span><span class="token function">bucketSort</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"排序之后："</span> <span class="token operator">+</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        BucketSort.bucketSort(data);
+        System.out.println(&quot;排序之后：&quot; + Arrays.toString(data));
+    }
+}
+</code></pre>
 <h4 id="3-计数排序"><a href="#3-计数排序" class="headerlink" title="3.计数排序"></a>3.计数排序</h4><p>计数排序其实是桶排序的一种特殊情况，假如要排序的数据的范围并不大，最大值是n，那么我们可以初始化n个桶，每个桶内存放数值相同的数据，这样就省去了桶内排序这一步骤。然后按照桶的大小依次取出数据，数据就是有序的了。</p>
 <p>例如，需要给10万人按照年龄排序，应该怎么做呢？使用计数排序就能够很有效的解决，我们可以假设，10万人中，年龄最小的是1，年龄最大的是120，那么我们可以初始化120个桶，将年龄相同的放如到一个桶中，这样数据整体就有序了。</p>
 <p>这里我模拟了一个计数排序：假如要给班上的100个人按照成绩进行排序，成绩最大值是10，最小值是0，那么可以用11个桶，每个桶的下标表示成绩即0-10。    </p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CountingSort</span> <span class="token punctuation">{</span>
+<pre><code class="java">public class CountingSort {
 
-    <span class="token comment" spellcheck="true">//假设有100个考生，分数在0-10之间</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">countingSort</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    //假设有100个考生，分数在0-10之间
+    public static void countingSort(int[] data) {
+        int index = 0;
 
-        <span class="token comment" spellcheck="true">//新建11个桶，每个桶内保存相同的分数</span>
-        <span class="token comment" spellcheck="true">//使用链表模拟桶，新建11个桶</span>
-        ArrayList<span class="token operator">&lt;</span>LinkedList<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> buckets <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//初始化桶</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">11</span><span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            buckets<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        //新建11个桶，每个桶内保存相同的分数
+        //使用链表模拟桶，新建11个桶
+        ArrayList&lt;LinkedList&lt;Integer&gt;&gt; buckets = new ArrayList&lt;&gt;();
+        //初始化桶
+        for(int i = 0; i &lt; 11; i ++) {
+            buckets.add(new LinkedList&lt;&gt;());
+        }
 
-        <span class="token comment" spellcheck="true">//将数据放入到桶中</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+        //将数据放入到桶中
+        for(int i = 0; i &lt; data.length; i ++) {
+            buckets.get(data[i]).add(data[i]);
+        }
 
-        <span class="token comment" spellcheck="true">//将数据取出来</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">11</span><span class="token punctuation">;</span> i <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j <span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                data<span class="token punctuation">[</span>index <span class="token operator">++</span><span class="token punctuation">]</span> <span class="token operator">=</span> buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+        //将数据取出来
+        for(int i = 0; i &lt; 11; i ++) {
+            for(int j = 0; j &lt; buckets.get(i).size(); j ++) {
+                data[index ++] = buckets.get(i).get(j);
+            }
+        }
+    }
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// TODO Auto-generated method stub</span>
-        <span class="token comment" spellcheck="true">//100个考生，分数在0-10之间</span>
-        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        //100个考生，分数在0-10之间
+        int[] data = new int[100];
+        for (int i = 0; i &lt; data.length; i++) {
+            data[i] = (int) (Math.random() * 11);
+        }
 
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println(Arrays.toString(data));
 
-        CountingSort<span class="token punctuation">.</span><span class="token function">countingSort</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        CountingSort.countingSort(data);
+        System.out.println(Arrays.toString(data));
+    }
+}
+</code></pre>
 <p>其实可以发现，计数排序和桶排序在代码上的区别就是：计数排序没有桶内排序这一环节。其他都是类似的。</p>
 <h4 id="4-基数排序"><a href="#4-基数排序" class="headerlink" title="4.基数排序"></a>4.基数排序</h4><p>首先思考一个问题，假如要对10万个手机号码进行排序，应该怎么做呢？手机号码有11位，显然不太适合上面的两种桶排序和计数排序，还记得前面说到的稳定排序吗？我们可以借助稳定的排序，从手机号码的最后一位开始比较，最后按照第一位排序，因为是稳定的，后面位数的号码不会被打乱，排完之后，整个手机号码就有序了。</p>
 <p>我是用几个简单的数组来实现这个排序的过程：</p>
@@ -757,7 +756,7 @@ exception分为RuntimeExcep</div>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="秋招以4个offer结束">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="秋招以4个offer结束">
                         
                         <span class="card-title">秋招以4个offer结束</span>
                     </div>
@@ -828,7 +827,7 @@ exception分为RuntimeExcep</div>
             + '来源: roseduan<br />'
             + '作者: roseduan<br />'
             + '链接: <a href="' + url + '">' + url + '</a><br />'
-            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+            + '本文章著作权归作者roseduan所有，任何形式的转载都请注明出处。';
 
         selection.selectAllChildren(newdiv);
         window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
