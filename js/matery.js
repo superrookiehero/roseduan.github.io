@@ -58,9 +58,9 @@ $(function () {
     });
 
     /*初始化瀑布流布局*/
-    $('#articles').masonry({
-        itemSelector: '.article'
-    });
+    // $('#articles').masonry({
+    //     itemSelector: '.article'
+    // });
 
     AOS.init({
         easing: 'ease-in-out-sine',
