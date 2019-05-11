@@ -452,9 +452,9 @@
 <p>三种解决办法虽然有效，但是也带来了另外的三个问题，分别就是并发 bug 产生的源头。</p>
 <h5 id="1-可见性问题"><a href="#1-可见性问题" class="headerlink" title="1.可见性问题"></a>1.可见性问题</h5><p>如果是单核 CPU，多个线程操作的都是同一个 CPU 缓存，那么一个线程修改了共享变量，另一个线程肯定能马上看到。</p>
 <p>如果是多核 CPU ，每个 CPU 都有自己的缓存，这样线程对共享变量的修改便对其他线程不可见了，类似下图这样：</p>
-<p><img src="https://img-blog.csdnimg.cn/20190510155104383.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Jvc2VfRHVhbk0=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://roseduan.github.io/images/es/20190510155104383.png" alt=""></p>
 <h5 id="2-原子性问题"><a href="#2-原子性问题" class="headerlink" title="2.原子性问题"></a>2.原子性问题</h5><p>为什么会有线程切换？一个线程在执行的过程中，可能会进行耗时的 I/O 操作，这时线程需要等待 I/O 操作完成。线程在等待的过程中，可以释放 CPU 的使用权，让另一个线程执行，这样能够提高 CPU 的使用率。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190510155120470.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Jvc2VfRHVhbk0=,size_16,color_FFFFFF,t_70" alt=""></p>
+<p><img src="https://roseduan.github.io/images/es/20190510155120470.png" alt=""></p>
 <p>例如上图，两个线程同时对变量 count 加 1，线程 A 在执行的过程中切换到了线程 B，最后导致写入到内存的值都是 1，与预期不符。</p>
 <h5 id="3-有序性问题"><a href="#3-有序性问题" class="headerlink" title="3.有序性问题"></a>3.有序性问题</h5><p>首先看一段很经典的获取单例对象的代码：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Singleton</span> <span class="token punctuation">{</span>
