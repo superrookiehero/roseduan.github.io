@@ -1563,7 +1563,7 @@ footer .copy-right {
 
 .search-result-list .search-result-title {
     font-size: 1.4rem;
-    color: #42b983;
+    color: rgb(66, 185, 131);
 }
 
 .search-result-list li {
@@ -1593,7 +1593,7 @@ footer .copy-right {
 }
 
 .top-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #FF5E3A 0%, #FF2A68 100%);
+    background: linear-gradient(to bottom right, rgb(179, 95, 179) 0%, rgb(125, 43, 124) 100%);
     width: 48px;
     height: 48px;
 }

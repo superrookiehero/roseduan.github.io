@@ -29,7 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
@@ -488,8 +488,7 @@
         BucketSort<span class="token punctuation">.</span><span class="token function">bucketSort</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"排序之后："</span> <span class="token operator">+</span> Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="3-计数排序"><a href="#3-计数排序" class="headerlink" title="3.计数排序"></a>3.计数排序</h4><p>计数排序其实是桶排序的一种特殊情况，假如要排序的数据的范围并不大，最大值是n，那么我们可以初始化n个桶，每个桶内存放数值相同的数据，这样就省去了桶内排序这一步骤。然后按照桶的大小依次取出数据，数据就是有序的了。</p>
 <p>例如，需要给10万人按照年龄排序，应该怎么做呢？使用计数排序就能够很有效的解决，我们可以假设，10万人中，年龄最小的是1，年龄最大的是120，那么我们可以初始化120个桶，将年龄相同的放如到一个桶中，这样数据整体就有序了。</p>
 <p>这里我模拟了一个计数排序：假如要给班上的100个人按照成绩进行排序，成绩最大值是10，最小值是0，那么可以用11个桶，每个桶的下标表示成绩即0-10。    </p>
@@ -533,8 +532,7 @@
         CountingSort<span class="token punctuation">.</span><span class="token function">countingSort</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其实可以发现，计数排序和桶排序在代码上的区别就是：计数排序没有桶内排序这一环节。其他都是类似的。</p>
 <h4 id="4-基数排序"><a href="#4-基数排序" class="headerlink" title="4.基数排序"></a>4.基数排序</h4><p>首先思考一个问题，假如要对10万个手机号码进行排序，应该怎么做呢？手机号码有11位，显然不太适合上面的两种桶排序和计数排序，还记得前面说到的稳定排序吗？我们可以借助稳定的排序，从手机号码的最后一位开始比较，最后按照第一位排序，因为是稳定的，后面位数的号码不会被打乱，排完之后，整个手机号码就有序了。</p>
 <p>我是用几个简单的数组来实现这个排序的过程：</p>
@@ -892,7 +890,7 @@
 
             
                 &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="post-count">15.6k</span>
+                <span class="post-count">18.2k</span>
             
 
 <!--white-color  -->

@@ -37,7 +37,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
@@ -468,7 +468,7 @@
 <p>3.使用 + 号来拼接字符串</p>
 <p>4.函数 str() 可以将非字符串值转换为字符串</p>
 <p><strong>2. 数字</strong></p>
-<p>1.Python 使用 <strong> 表示乘方运算，例如 3 </strong> 3 ，表示 3 的 3 次方</p>
+<p>1.Python 使用 ** 表示乘方运算，例如 3 ** 3 ，表示 3 的 3 次方</p>
 <blockquote>
 <p><strong>第二章 列表</strong></p>
 </blockquote>
@@ -493,12 +493,10 @@
 <pre class="line-numbers language-python"><code class="language-python">names<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"Lanister"</span><span class="token punctuation">,</span> <span class="token string">"Stark"</span><span class="token punctuation">,</span> <span class="token string">"Byrathen"</span><span class="token punctuation">,</span> <span class="token string">"Thyrell"</span><span class="token punctuation">]</span>
 
 <span class="token keyword">for</span> name <span class="token keyword">in</span> names <span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>9.函数 range() 可以创建数字列表，使用方式：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>将会打印数字 1-5 ，还可以使用函数 list() 将 range 转换为列表，例如 list(range(1, 6))</p>
 <p>使用函数 range 的时候，还可以指定步长，例如 range(2, 11, 2)，将会打印 10 以内的偶数</p>
 <p>10.可以对数字列表进行处理的几个函数：max、min、sum</p>
@@ -519,15 +517,13 @@
 <span class="token keyword">print</span><span class="token punctuation">(</span>players<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 
 <span class="token comment" spellcheck="true"># 使用负数下标，打印最后三个数</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>players<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>players<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>13.复制列表：</p>
 <p>复制一个列表的所有元素：</p>
 <pre class="line-numbers language-python"><code class="language-python">players <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Rose"</span><span class="token punctuation">,</span> <span class="token string">"Freya"</span><span class="token punctuation">,</span> <span class="token string">"Jack"</span><span class="token punctuation">,</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span> <span class="token string">"Maria"</span><span class="token punctuation">]</span>
 sub_players <span class="token operator">=</span> players<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
 <span class="token comment" spellcheck="true"># 这种方式不行</span>
-<span class="token comment" spellcheck="true"># sub_players = players</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true"># sub_players = players</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>也可以结合上面的方式复制切片</p>
 <p><strong>元组</strong>：不可变的列表称为元组</p>
 <p>元组的定义方式：names = (“rose”, “Jamie”)，这里使用的是圆括号，并且不能通过下标来修改元素的值。</p>
@@ -535,12 +531,10 @@ sub_players <span class="token operator">=</span> players<span class="token punc
 <pre class="line-numbers language-python"><code class="language-python">dimensions <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"kit"</span><span class="token punctuation">,</span> <span class="token string">"ned"</span><span class="token punctuation">)</span>
 dimensions <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"Jack"</span><span class="token punctuation">,</span> <span class="token string">"Rose"</span><span class="token punctuation">)</span>
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>dimensions<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>dimensions<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>14.判断列表中是否包含特定的值，使用关键字 in，返回布尔值</p>
 <pre class="line-numbers language-python"><code class="language-python">players <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Rose"</span><span class="token punctuation">,</span> <span class="token string">"Freya"</span><span class="token punctuation">,</span> <span class="token string">"Jack"</span><span class="token punctuation">,</span> <span class="token string">"Bob"</span><span class="token punctuation">,</span> <span class="token string">"Maria"</span><span class="token punctuation">]</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Yara"</span> <span class="token keyword">in</span> players<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Yara"</span> <span class="token keyword">in</span> players<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>同样的，如果判断不包含，可以使用 not in</p>
 <blockquote>
 <p><strong>第三章 字典</strong></p>
@@ -552,8 +546,7 @@ alien<span class="token punctuation">[</span><span class="token string">"name"</
 
 <span class="token keyword">print</span><span class="token punctuation">(</span>alien<span class="token punctuation">)</span>
 <span class="token comment" spellcheck="true"># 打印结果：</span>
-<span class="token comment" spellcheck="true"># {'color': 'red', 'points': 5, 'name': 'rose'}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true"># {'color': 'red', 'points': 5, 'name': 'rose'}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.删除字典中的键值对：使用 del 命令，例如 <code>del alien[&quot;color&quot;]</code></p>
 <p>3.遍历字典：需要使用到字典的 items() 方法</p>
 <pre class="line-numbers language-python"><code class="language-python">favorite_numbers <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -565,20 +558,17 @@ alien<span class="token punctuation">[</span><span class="token string">"name"</
 
 <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> favorite_numbers<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"name = "</span> <span class="token operator">+</span> k<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"value = "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"value = "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>遍历字典的键或者值，分别使用字典的 keys() 和 values() 方法。</p>
 <p>可以结合前面的关键字 in 判断某个键或者值是否在字典中。</p>
 <p>可以使用 sorted() 函数对字典的键或者值进行排序。</p>
 <p>可以使用 list 函数将字典的键或者值转换为列表：</p>
 <pre class="line-numbers language-python"><code class="language-python">keys <span class="token operator">=</span> list<span class="token punctuation">(</span>favorite_numbers<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 sorted_keys <span class="token operator">=</span> sorted<span class="token punctuation">(</span>keys<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>sorted_keys<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sorted_keys<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>4.set() 函数可以将字典中的键或者值去除重复的显示出来：</p>
 <pre class="line-numbers language-python"><code class="language-python">set_values <span class="token operator">=</span> set<span class="token punctuation">(</span>favorite_numbers<span class="token punctuation">.</span>values<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>set_values<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>set_values<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>set() 函数也可以用于列表的去重</p>
 <p><strong>字典和列表</strong></p>
 <p>1.在列表中存储字典</p>
@@ -586,8 +576,7 @@ sorted_keys <span class="token operator">=</span> sorted<span class="token punct
 alien_1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"color"</span><span class="token punctuation">:</span> <span class="token string">"black"</span><span class="token punctuation">,</span> <span class="token string">"points"</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"speed"</span><span class="token punctuation">:</span> <span class="token string">"medium"</span><span class="token punctuation">}</span>
 alien_2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"color"</span><span class="token punctuation">:</span> <span class="token string">"green"</span><span class="token punctuation">,</span> <span class="token string">"points"</span><span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"speed"</span><span class="token punctuation">:</span> <span class="token string">"slow"</span><span class="token punctuation">}</span>
 
-aliens <span class="token operator">=</span> <span class="token punctuation">[</span>alien_0<span class="token punctuation">,</span> alien_1<span class="token punctuation">,</span> alien_2<span class="token punctuation">]</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+aliens <span class="token operator">=</span> <span class="token punctuation">[</span>alien_0<span class="token punctuation">,</span> alien_1<span class="token punctuation">,</span> alien_2<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>2.在字典中存储列表：</p>
 <pre class="line-numbers language-python"><code class="language-python">pizza <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token string">"crust"</span><span class="token punctuation">:</span> <span class="token string">"thick"</span><span class="token punctuation">,</span>
@@ -597,8 +586,7 @@ aliens <span class="token operator">=</span> <span class="token punctuation">[</
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The toppings are :"</span><span class="token punctuation">)</span>
 
 <span class="token keyword">for</span> topping <span class="token keyword">in</span> pizza<span class="token punctuation">[</span><span class="token string">"toppings"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t"</span> <span class="token operator">+</span> topping<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t"</span> <span class="token operator">+</span> topping<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>3.字典中存储字典：</p>
 <pre class="line-numbers language-python"><code class="language-python">users <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token string">"user1"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -617,8 +605,7 @@ aliens <span class="token operator">=</span> <span class="token punctuation">[</
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The visitors : "</span> <span class="token operator">+</span> user<span class="token punctuation">)</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Basic information:"</span><span class="token punctuation">)</span>
     <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> attr<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t"</span> <span class="token operator">+</span> k <span class="token operator">+</span> <span class="token string">" : "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t"</span> <span class="token operator">+</span> k <span class="token operator">+</span> <span class="token string">" : "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意，如果包含非字符串类型的数据，需要使用 str() 函数将其转换。</p>
 <blockquote>
 <p><strong>第四章 用户输入和 while 循环</strong></p>
@@ -628,15 +615,13 @@ aliens <span class="token operator">=</span> <span class="token punctuation">[</
 pro <span class="token operator">+=</span> <span class="token string">"\nYou are not a shy person, right?\n"</span>
 message <span class="token operator">=</span> input<span class="token punctuation">(</span>pro<span class="token punctuation">)</span>
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The info you want to say is : "</span> <span class="token operator">+</span> message<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The info you want to say is : "</span> <span class="token operator">+</span> message<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>input() 可以接收参数，可以当作输入的提示。</p>
 <p>input() 会将输入的内容解析为字符串。</p>
 <p>Python 2.7 使用 row_input() 函数进行输入，而不是 input() 函数。</p>
 <p>2.如果输入的是数字，可以使用 int() 函数</p>
 <pre class="line-numbers language-python"><code class="language-python">age <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"What`s your age?"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"you age is "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"you age is "</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>使用 int() 函数需要将 input() 函数嵌套在里面。</p>
 <p>3.while 循环的基本使用方式：</p>
 <pre class="line-numbers language-python"><code class="language-python">prompt <span class="token operator">=</span> <span class="token string">"What`s you age?"</span>
@@ -651,16 +636,14 @@ age <span class="token operator">=</span> int<span class="token punctuation">(</
         <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The ticket are 10 dollars\n"</span><span class="token punctuation">)</span>
     <span class="token keyword">else</span><span class="token punctuation">:</span>
         <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The ticket are 15 dollars\n"</span><span class="token punctuation">)</span>
-    age <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    age <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>和 if 条件类似，将条件表达式写在 while 关键字后面，主要不要出现死循环。</p>
 <p>4.while 循环可以将列表作为条件表达式：</p>
 <pre class="line-numbers language-python"><code class="language-python">users <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"alice"</span><span class="token punctuation">,</span> <span class="token string">"rose"</span><span class="token punctuation">,</span> <span class="token string">"candace"</span><span class="token punctuation">,</span> <span class="token string">"jack"</span><span class="token punctuation">]</span>
 
 <span class="token keyword">while</span> users<span class="token punctuation">:</span>
     user <span class="token operator">=</span> users<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Verifying user : "</span> <span class="token operator">+</span> user<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Verifying user : "</span> <span class="token operator">+</span> user<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当然需要在循环体中避免死循环，这里是使用 pop() 函数依次删除列表中的值。</p>
 
             </div>
@@ -825,44 +808,40 @@ age <span class="token operator">=</span> int<span class="token punctuation">(</
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/05/10/python-xue-xi-bi-ji-yi-ji-chu-zhi-shi/">
+                <a href="/2019/05/11/java-bing-fa-li-lun-ji-chu-yi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Python 学习笔记(一)——基础知识">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java 并发理论基础(一)">
                         
-                        <span class="card-title">Python 学习笔记(一)——基础知识</span>
+                        <span class="card-title">Java 并发理论基础(一)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">
-第一章 变量和简单数据类型
-</div>
+                    <div class="summary">一、并发编程的核心问题1.分工</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-05-11
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/python/" class="post-category" target="_blank">
-                                    python
+                            <a href="/categories/Java并发编程实战/" class="post-category" target="_blank">
+                                    Java并发编程实战
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/python/" target="_blank">
-                        <span class="chip bg-color">python</span>
+                    <a href="/tags/Java并发/" target="_blank">
+                        <span class="chip bg-color">Java并发</span>
                     </a>
                     
                 </div>
@@ -1019,7 +998,7 @@ age <span class="token operator">=</span> int<span class="token punctuation">(</
 
             
                 &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="post-count">15.6k</span>
+                <span class="post-count">18.2k</span>
             
 
 <!--white-color  -->

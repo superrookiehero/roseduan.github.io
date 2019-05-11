@@ -29,7 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
@@ -468,8 +468,7 @@
             data<span class="token punctuation">[</span>minIndex<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>综合代码分析，不难看出，选择排序的平均时间复杂度是O(n<sup>2</sup>)，是一种原地排序算法，空间复杂度是O(1)，那么它和冒泡排序一样，是稳定的排序吗？答案是否定的，选择排序是一种不稳定的排序算法。</p>
 <p>因为选择排序每次都要在未排序区间找到最小值，并且和前面的元素交换位置，这样就破坏了稳定性。例如一个数组[3,3,1,7,2]，第一次排序的时候，找到最小值1和第一个3交换，这样两个3的位置就乱了，所以就不稳定了。</p>
 <h4 id="3-插入排序"><a href="#3-插入排序" class="headerlink" title="3.插入排序"></a>3.插入排序</h4><p>插入排序的思路其实和选择排序类似，都是将排序数分为已排序区间和未排序区间，插入排序的具体做法是这样的：依次遍历未排序区间，将未排序区间的数和已排序区间的数组进行比较，将其插入到合适的位置上，保证已排序区间一直都是有序的，遍历完成排序则完成。</p>
@@ -500,8 +499,7 @@
             data<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>综上分析，插入排序的平均时间复杂度是O(n<sup>2</sup>)，是一种原地排序算法，空间复杂度是O(1)，那么它是稳定的吗？我们来分析一下：结合上面的代码，只有当data[j] &gt; value的时候，才会交换两个元素的位置，所以这并不会破坏稳定性，例如一个数组[1,3,3,7,5]，5和7交换了位置之后，由于5&gt;3，所以并不会继续交换位置。所以我们可以得知：插入排序是稳定的排序算法。</p>
 <h4 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h4><p>好了，三种基本的排序算法都已经学完了，针对其是否稳定，时间复杂度等性质，我总结了一下：</p>
 <p><img src="https://roseduan.github.io/images/%E6%80%BB%E7%BB%93.png" alt=""></p>
@@ -858,7 +856,7 @@
 
             
                 &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="post-count">15.6k</span>
+                <span class="post-count">18.2k</span>
             
 
 <!--white-color  -->
